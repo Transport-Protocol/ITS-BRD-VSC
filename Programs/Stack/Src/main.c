@@ -10,29 +10,25 @@
 #include <arm_compat.h>
 
 #include "LCD_GUI.h"
-#include "init.h"
+
 #include "stm32f4xx_hal.h"
 #include <stdint.h>
 
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
-#include "additionalFonts.h"
-#include "error.h"
-#include "fontsFLASH.h"
 #include "lcd.h"
 
 #include "led.h"
 #include "lwip_interface.h"
 
-
+#include "lwip/apps/lwiperf.h"
 
 extern void initITSboard(void);
 
 /* Definitionen */
-#define TASK_COUNT 3
 /* Enumeration für den Zustand der Statemaschine */
-typedef enum { STATE_ETHERNET_FRAME_PULL, STATE_TASK1, STATE_TASK2, STATE_IDLE } State_t;
-
+typedef enum { STATE_ETHERNET_FRAME_PULL, STATE_TASK1, STATE_TASK2, STATE_IPERF, STATE_IDLE } State_t;
+#define TASK_COUNT STATE_IDLE
 /* Struktur für eine Task */
 typedef struct {
   void (*taskFunction)(void); // Funktionspointer zur Task
@@ -45,6 +41,7 @@ typedef struct {
 void TASK_ETHERNET_FRAME_PULL(void);
 void Task1(void);
 void Task2(void);
+void IPERF(void);
 void Scheduler(void);
 void StateMachine(void);
 
@@ -52,10 +49,10 @@ void StateMachine(void);
 State_t currentState = STATE_IDLE;
 uint32_t currentTime = 0; // Simulierte Zeitvariable
 Task_t taskList[TASK_COUNT] = {
-    {TASK_ETHERNET_FRAME_PULL, 0, 10, true}, 
-    {Task1, 0, 100, true}, 
-    {Task2, 0, 200, true}
-
+    [STATE_ETHERNET_FRAME_PULL]={TASK_ETHERNET_FRAME_PULL, 0, 10, true}, 
+    [STATE_TASK1]              ={Task1, 0, 100, true}, 
+    [STATE_TASK2]              ={Task2, 0, 200, true},
+    [STATE_IPERF]              ={IPERF, 0, 200, true}   
 };
 
 int main(void) {
@@ -67,12 +64,17 @@ int main(void) {
   // Begruessungstext
   lcdPrintlnS("LWIP-project");
 
+  // *********************** Setup ************************
   // initialisiere den Stack 
   init_lwip_stack();
-
   // Setup Interface
   netif_config();
   
+  // ********************* INIT APPS***********************
+  if(taskList[STATE_IPERF].isEnabled){
+    lwiperf_start_tcp_server_default(NULL, NULL);
+  }
+
   // Test in Endlosschleife
   while (1) {
     Scheduler();    // Aufruf des Schedulers in der Endlosschleife
@@ -95,6 +97,9 @@ void StateMachine(void) {
   case STATE_IDLE:
     // Im IDLE-Zustand keine spezifische Aktion
     break;
+  case STATE_IPERF:
+    currentState = STATE_IDLE;
+    break;  
   default:
     // Fehlerbehandlung für unbekannte Zustände
     currentState = STATE_IDLE;
@@ -139,6 +144,10 @@ void Task2(void) {
   // Kommentar: Diese Task toggelt die LED2
   toggleGPIO(&led_pins[2]);
   currentState = STATE_TASK2;
+}
+/* Task IPERF - Measurement*/
+void IPERF(void){
+  currentState = STATE_IPERF; 
 }
 
 /* Erweiterungshinweis:
