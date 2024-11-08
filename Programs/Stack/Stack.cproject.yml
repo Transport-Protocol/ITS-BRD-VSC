@@ -219,6 +219,11 @@ project:
         - file: Src/lwip_interface.c
         - file: Src/arch/sys_arch.c   
 
+    # Benutzerdefinierte Programmdateien
+    - group: Program/Lcd/Src
+      files:       
+        - file: Src/lcd/iperf_gui.c   
+
    # Benutzerdefinierte Programmdateien
     - group: Program/Net/Src
       files:

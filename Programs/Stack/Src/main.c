@@ -21,9 +21,9 @@
 #include "lwip_interface.h"
 
 #include "lwip/apps/lwiperf.h"
+#include "lcd/iperf_gui.h"
 
 #define IPERF_EXCLUSIVE 0 // 1: exclusive iperf mode, 0: non-exclusive iperf mode
-
 extern void initITSboard(void);
 
 /* Definitionen */
@@ -72,7 +72,21 @@ int main(void) {
   
   // ********************* INIT APPS **********************
   if(taskList[STATE_IPERF].isEnabled){
-    lwiperf_start_tcp_server_default(NULL, NULL);
+    
+    display_static_info_iperf();
+    display_dynamic_info_iperf();
+    /**
+    Idee des Callbacks für die Messung
+    void (*callback_func_ptr)(void *arg, enum lwiperf_report_type report_type,
+                            const ip_addr_t* local_addr, u16_t local_port,
+                            const ip_addr_t* remote_addr, u16_t remote_port,
+                            u32_t bytes_transferred, u32_t ms_duration,
+                            u32_t bandwidth_kbitpsec);
+    callback_func_ptr = lwiperf_report;
+    */
+    
+    // Initialisieren des Funktionszeigers mit der Adresse von lwiperf_report
+    lwiperf_start_tcp_server_default(lwiperf_report, NULL);
     // If we run iperf exclusively, we need to run only the iperf task in the main loop
     while (IPERF_EXCLUSIVE) {
       taskList[STATE_ETHERNET_FRAME_PULL].taskFunction();
