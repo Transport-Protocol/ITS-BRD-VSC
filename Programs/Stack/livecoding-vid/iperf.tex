@@ -1,0 +1,93 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{iperf auf dem ITS BRD}
+\author{Martin Becke}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Inhaltsverzeichnis}
+    \tableofcontents
+\end{frame}
+
+\section{Wdh: lwIP-Projekt}
+\begin{frame}
+    \frametitle{Allgemein: lwIP-Projekt des RN ITS}
+    \begin{itemize}
+        \item lwIP (lightweight IP) ist ein Open-Source-Stack zur Implementierung des TCP/IP-Protokolls.
+        \item Speziell für eingebettete Systeme mit begrenztem Speicher und Ressourcen entwickelt.
+        \item Unterstützt TCP, UDP, ICMP, DHCP und PPP.
+        \item Ermöglicht Netzwerkanbindung ohne hohe Speicheranforderungen.
+    \end{itemize}
+\end{frame}
+
+
+\section{Ziel des iperf Projektes}
+\begin{frame}
+    \frametitle{Ziel des Projektes}
+    \begin{itemize}
+        \item Entwicklung einer Anwendung, die Basisdaten des Netzwerk-Interfaces erfasst.
+        \item Nutzung von iPerf zur Durchsatzmessung und Analyse der Netzwerkempfindlichkeit.
+        \item Kombination aus Delay-Messungen (Ping) und iPerf für detaillierte Performance-Analyse.
+    \end{itemize}
+\end{frame}
+
+\section{Implementierungsübersicht}
+\begin{frame}
+    \frametitle{Implementierungsübersicht}
+    \begin{itemize}
+        \item Erstellung eines neuen Tasks namens \texttt{IPERF}.
+        \item Integration der iPerf-Bibliothek von lwIP für TCP-basierte Kommunikation.
+        \item Einbindung von \texttt{lwip/apps/lwiperf.h} zur Performance-Messung.
+    \end{itemize}
+\end{frame}
+
+\section{Fortschritt und Ergebnisse}
+\begin{frame}
+    \frametitle{Fortschritt und Ergebnisse}
+    \begin{itemize}
+        \item Erstellung eines neuen Branches für iPerf-Integration.
+        \item Verbesserung der Task-Management-Parameter für optimierte Kommunikation.
+        \item Test: TCP-Server auf Port 5001 mit anfänglich > 1,5 Mbit/s. Warum?
+    \end{itemize}
+\end{frame}
+
+\section{Optimierungsschritte}
+\begin{frame}
+    \frametitle{Optimierungsschritte}
+    \begin{itemize}
+        \item Exklusive Ausführung des iPerf-Tasks zur Maximierung der Leistung.
+        \item Implementierung einer Callback-Funktion zur Rückmeldung auf dem Board.
+        \item Ziel: Visualisierung und Bewertung der Systemleistungsgrenzen.
+    \end{itemize}
+\end{frame}
+
+\section{Erweiterungen und GUI-Darstellung}
+\begin{frame}
+    \frametitle{Erweiterungen und GUI-Darstellung}
+    \begin{itemize}
+        \item Darstellung statischer und dynamischer Werte auf dem LCD-Bildschirm.
+        \item Einsatz der \texttt{LCD GUI.h}-Bibliothek zur Steuerung der Benutzeroberfläche.
+        \item Regelmäßige Aktualisierung dynamischer Werte für Echtzeit-Feedback.
+    \end{itemize}
+\end{frame}
+
+\section{Nutzung von iPerf zur Netzwerkmessung}
+\begin{frame}
+    \frametitle{Nutzung von iPerf zur Netzwerkmessung}
+    \begin{itemize}
+        \item Nach Installation von iPerf: Test im Client-Modus mit \texttt{iperf -c 192.168.33.99 -t 300 -i 10}.
+        \item \texttt{-c 192.168.33.99}: Verbindung mit dem Server.
+        \item \texttt{-t 300}: Testdauer auf 300 Sekunden festgelegt.
+        \item \texttt{-i 10}: Ausgabe der Zwischenstatistik alle 10 Sekunden.
+    \end{itemize}
+\end{frame}
+
+\end{document} 
+   

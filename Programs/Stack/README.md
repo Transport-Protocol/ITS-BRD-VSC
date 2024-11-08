@@ -1,7 +1,7 @@
 ## Inhaltsverzeichnis
 1. [Allgemein: lwIP-Projekt des RN ITS (HAW Hamburg)](#allgemein-lwip-projekt-des-rn-its-haw-hamburg)
 2. [Anmerkungen](#anmerkungen)
-3. [LiveCoding Video 02](#livecoding-video-02)
+3. [LiveCoding Video 03](#livecoding-video-02)
 
 ## Allgemein: lwIP-Projekt des RN ITS (HAW Hamburg)
 
@@ -19,26 +19,100 @@ In einer Vorlesung kann lwIP auf mehreren Ebenen didaktisch genutzt werden. Eine
 git config http.postBuffer 104857600
 ```
 
-### LiveCoding Video 02
+### LiveCoding Video 03
 
-In dem aktuellen schritt vertiefen wir die Implementierung des Lightway IP Stacks auf dem Embedded Test System (ETS) Board und führen Sie durch eine praxisorientierte Live-Coding-Demonstration. Ziel ist es, Ihnen in Echtzeit Einblicke in die zentralen Funktionen und Konfigurationen des Lightway IP Stacks zu vermitteln. Diese Implementierung ermöglicht uns, eine leistungsfähige Netzwerklösung auf ressourcenbeschränkten Mikrocontrollern wie dem STM32 zu realisieren und dabei grundlegende Netzwerkprotokolle wie TCP, UDP, ICMP und DHCP zu integrieren.
+Das Ziel dieses Beispielprojektes ist es, eine Anwendung für das ITS BRD zu entwickeln, die es uns ermöglicht, Basisdaten über das Netzwerk-Interface zu erfassen und den Durchsatz zu messen. Dazu setzen wir auf eine Kombination aus Delay-Messungen (ping) und iPerf, einem leistungsfähigen Tool für große Datenübertragungen und Durchsatzanalyse. Diese Tools helfen uns, die Empfindlichkeit des Systems gegenüber verschiedenen Aufrufzyklen und die Auswirkungen auf die Gesamtperformance zu analysieren.
 
-Der Lightway IP Stack, den wir einsetzen, ist speziell darauf ausgelegt, mit einem minimalen Ressourcenaufwand auszukommen und dabei dennoch den wesentlichen Anforderungen eines TCP/IP-Netzwerks gerecht zu werden. Die modulare Architektur des Stacks ist hier von besonderem Vorteil, da sie uns Flexibilität bietet, Speicher- und Verarbeitungsparameter dynamisch anzupassen und auf spezifische Anforderungen einzugehen. Diese Struktur ermöglicht eine effiziente Aufteilung der Netzwerkfunktionen auf verschiedene Module und bietet Entwicklern damit eine hohe Kontrolle über Ressourcenmanagement und Funktionsumfang.
+#### Implementierungsübersicht
 
-#### Lizenz und rechtliche Rahmenbedingungen
+1. **Aufbau eines neuen Tasks**  
+   Im Rahmen der Entwicklung wird ein neuer Task namens `IPERF` in unserem bestehenden Projekt erstellt. Dieser Task soll eine optimale Durchsatzerfahrung bieten. Dafür greifen wir auf Codes aus der `lwip`-Bibliothek zurück.
 
-Ein weiteres wichtiges Thema ist die BSD-Lizenz, unter der der Lightway IP Stack bereitgestellt wird. Die BSD-Lizenz erlaubt eine flexible Nutzung und Anpassung des Codes, ohne dass für die Nutzung im Rahmen eines proprietären Produkts eine Offenlegung des Quellcodes erforderlich ist. Diese Lizenzierung ist besonders für kommerzielle Anwendungen auf Mikrocontroller-Basis von Interesse, da sie sowohl Anpassungen als auch die Integration in eigene Projekte ermöglicht.
+2. **Integration der iPerf-Bibliothek**  
+   Die `IPPerf`-Bibliothek von `lwip` stellt eine Basis für TCP-basierte Kommunikationsanwendungen dar und wird hier zur Leistungsbewertung des Netzwerks genutzt. Die Bibliothek bietet einfache Performance-Messungen, besonders für Bandbreitenmessungen in kleinen Services. Diese Grundlagen nutzen wir, um unsere erste Anwendung weiterzuentwickeln ohne besondere Protokollkenntnisse mitzubringen.
 
-##### Architektur und Konfigurationsdateien
+3. **Praktische Einbindung und Optimierung**  
+   Die Header-Datei `lwip/apps/lwiperf.h` wird eingebunden, und wir setzen uns intensiv mit der Initialisierung asueinander. 
 
-Im praktischen Teil werden wir die Datei `lwipopts.h.h` näher betrachten, die eine Vielzahl der grundlegenden Konfigurationsparameter definiert und somit als Ausgangspunkt für die Netzwerkkonfiguration dient. Neben dieser Datei sind auch spezifische C-Dateien notwendig, die die Funktionalitäten des Netzwerkinterfaces abdecken und die Struktur des Stacks definieren. Die Parameter in diesen Konfigurationsdateien legen unter anderem fest, welche Protokolle (wie z. B. TCP und UDP) aktiv sind und wie die Speichermanagementpraxis gestaltet wird. Dies ist für eine Bare-Metal-Implementierung auf einem STM32-Mikrocontroller besonders relevant, da hier ohne Betriebssystem gearbeitet wird.
+#### Fortschritt und Ergebnisse
 
-##### Netzwerkkonfiguration und Hardwareanbindung
+Im Verlauf des Projekts haben wir einen neuen Branch für die iPerf-Integration erstellt und die Ressourcen optimiert, um eine saubere Entwicklungsumgebung zu gewährleisten. Erste Tests mit dem Standard-TCP-Server, der auf Port 5001 läuft, zeigen jedoch eine suboptimale Übertragungsgeschwindigkeit von 1,27 Mbit/s. Durch Anpassungen am Task-Management konnten wir die Performance verbessern und die Kommunikation zwischen Server und Client maximieren. Es ist wichtig hierfür ein Verständniss aufzubauen.
 
-Die Netzwerkkonfiguration konzentriert sich dabei insbesondere auf die Initialisierung und Anpassung der Ethernet-Schnittstelle des Boards. Da die Effizienz dieser Implementierung stark von einer präzisen Anpassung abhängt, sind Anpassungen der Interrupt-Routinen notwendig, um Verzögerungen zu minimieren und eine stabile Kommunikation sicherzustellen. Die Zuweisung von MAC-Adressen sowie die Handhabung der Paketdatenströme sind hierbei entscheidende Aspekte, da sie für die reibungslose Funktion der Netzwerkanfragen verantwortlich sind.
+#### Wichtige Optimierungsschritte
 
-##### Live-Demonstration und praktische Anwendung
+- **Exklusive Ausführung des iPerf-Tasks**: Durch die Fokussierung auf die Kernfunktionalität ohne Ablenkungen oder Pausen wurde eine deutliche Steigerung der Leistung erreicht.
+- **Callback-Integration**: Eine Callback-Funktion wird implementiert, um während der Tests direkt auf dem Board Rückmeldungen anzeigen zu können. Dies unterstützt die Visualisierung und Bewertung der Leistungsgrenzen des Systems.
 
-Während der Live-Coding-Phase wird die Implementierung des Stacks Stück für Stück erläutert und durch die Zuweisung und Konfiguration der Netzwerkparameter ergänzt. Hierbei führen wir Testmethoden ein, um die Netzwerkkommunikation zu verifizieren. Ein einfaches, aber sehr effektives Verfahren stellt der Ping-Test dar, der durch Senden von ICMP-Paketen die Reaktionszeiten des Boards prüft und somit eine schnelle Überprüfung der Netzwerkstabilität erlaubt.
+#### Erweiterungen und GUI-Darstellung
 
-Diese live umgesetzte Struktur vermittelt nicht nur ein praktisches Verständnis der Netzwerkprotokolle und deren Implementierung auf einem Mikrocontroller, sondern erlaubt auch, die typischen Herausforderungen und Optimierungsmöglichkeiten im Ressourcenmanagement eines STM32 in einem Netzwerkumfeld zu erfahren. Die Studierenden werden so befähigt, das Gelernte im eigenen Umfeld direkt anzuwenden und eine vertiefte Einsicht in die Problematik der Netzwerkimplementierung auf Embedded-Systemen zu entwickeln.
+Wir arbeiten weiter an der Darstellung statischer und dynamischer Informationen auf einem LCD-Bildschirm. Die statischen Werte werden einmalig eingetragen, während dynamische Werte kontinuierlich aktualisiert werden. Diese Vorgehensweise minimiert die Blockierung des Ablaufs, besonders bei langen iPerf-Tests. Die `LCD GUI.h`-Bibliothek spielt hierbei eine zentrale Rolle für die Benutzeroberfläche.
+
+### Aufruf auf Client Seite
+
+##### Installation von iPerf
+
+Um die Netzwerkleistung mit iPerf messen zu können, muss iPerf auf dem System installiert werden. Die Installation erfolgt je nach Betriebssystem unterschiedlich.
+
+**Hinweis:** Stellen Sie sicher, dass Sie `iperf` installieren und nicht `iperf3`, da `iperf` die Version 2 ist und in einigen Fällen kompatibler für Netzwerkumgebungen, insbesondere in Projekten, die ältere Netzwerkprotokolle verwenden.
+
+###### Windows
+
+1. Besuchen Sie die [offizielle iPerf2-Website](https://iperf.fr/iperf-download.php) und laden Sie das Windows-Binary herunter.
+2. Entpacken Sie die ZIP-Datei und speichern Sie die Dateien an einem leicht zugänglichen Ort, z. B. `C:\iperf`.
+3. Öffnen Sie die Eingabeaufforderung (CMD) und navigieren Sie in das Verzeichnis, in dem sich `iperf.exe` befindet, z. B.:
+   ```cmd
+   cd C:\iperf
+   ```
+4. Führen Sie iPerf aus, indem Sie den entsprechenden Befehl eingeben (siehe unten für die Nutzung).
+
+###### macOS
+
+1. Öffnen Sie das Terminal.
+2. Installieren Sie iPerf über [Homebrew](https://brew.sh/), indem Sie folgenden Befehl ausführen:
+   ```bash
+   brew install iperf
+   ```
+3. Überprüfen Sie die Installation, indem Sie `iperf` aufrufen:
+   ```bash
+   iperf --version
+   ```
+
+###### Linux
+
+1. Öffnen Sie ein Terminal.
+2. Installieren Sie iPerf über den Paketmanager Ihrer Distribution.
+
+   - **Debian/Ubuntu**:
+     ```bash
+     sudo apt update
+     sudo apt install iperf
+     ```
+   - **Fedora**:
+     ```bash
+     sudo dnf install iperf
+     ```
+   - **Arch Linux**:
+     ```bash
+     sudo pacman -S iperf
+     ```
+
+3. Prüfen Sie die Installation, indem Sie `iperf` aufrufen:
+   ```bash
+   iperf --version
+   ```
+
+###### Nutzung von iPerf zur Netzwerkleistungsmessung
+
+Nach der Installation können Sie iPerf verwenden, um die Netzwerkleistung zwischen zwei Geräten zu messen. In diesem Projekt verwenden wir iPerf im **Client-Modus** mit folgendem Befehl:
+
+```bash
+iperf -c 192.168.33.99 -t 300 -i 10
+```
+
+###### Erklärung der Befehlsoptionen:
+
+- **`-c 192.168.33.99`**: Startet iPerf im Client-Modus und verbindet sich mit dem iPerf-Server unter der IP-Adresse `192.168.33.99`.
+- **`-t 300`**: Legt die Testdauer auf 300 Sekunden (5 Minuten) fest.
+- **`-i 10`**: Gibt alle 10 Sekunden eine Zwischenstatistik über die aktuelle Übertragungsrate aus.
+
+**Hinweis:** Verwenden Sie iPerf auf dem Server mit dem `-s`-Parameter, um die Server-Seite zu starten. Der Client wird dann Verbindungen zu dieser Adresse initiieren.
