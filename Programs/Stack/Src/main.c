@@ -15,13 +15,14 @@
 #include <stdint.h>
 
 #include "LCD_GUI.h"
-#include "LCD_Touch.h"
 #include "lcd.h"
 
 #include "led.h"
 #include "lwip_interface.h"
 
 #include "lwip/apps/lwiperf.h"
+
+#define IPERF_EXCLUSIVE 0 // 1: exclusive iperf mode, 0: non-exclusive iperf mode
 
 extern void initITSboard(void);
 
@@ -49,33 +50,36 @@ void StateMachine(void);
 State_t currentState = STATE_IDLE;
 uint32_t currentTime = 0; // Simulierte Zeitvariable
 Task_t taskList[TASK_COUNT] = {
-    [STATE_ETHERNET_FRAME_PULL]={TASK_ETHERNET_FRAME_PULL, 0, 10, true}, 
-    [STATE_TASK1]              ={Task1, 0, 100, true}, 
-    [STATE_TASK2]              ={Task2, 0, 200, true},
-    [STATE_IPERF]              ={IPERF, 0, 200, true}   
+    [STATE_ETHERNET_FRAME_PULL]={TASK_ETHERNET_FRAME_PULL, 0, 1, true}, 
+    [STATE_TASK1]              ={Task1, 0, 100, false}, 
+    [STATE_TASK2]              ={Task2, 0, 200, false},
+    [STATE_IPERF]              ={IPERF, 0, 1000, true}   
 };
 
 int main(void) {
   initITSboard(); // Initialisierung des ITS Boards
 
   GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
-  TP_Init(false);               // Initialisierung des LCD Boards mit Touch
 
   // Begruessungstext
-  lcdPrintlnS("LWIP-project");
+  lcdPrintlnS("LWIP IPerf Server");
 
   // *********************** Setup ************************
-  // initialisiere den Stack 
+  // Initialisiere den Stack 
   init_lwip_stack();
   // Setup Interface
   netif_config();
   
-  // ********************* INIT APPS***********************
+  // ********************* INIT APPS **********************
   if(taskList[STATE_IPERF].isEnabled){
     lwiperf_start_tcp_server_default(NULL, NULL);
+    // If we run iperf exclusively, we need to run only the iperf task in the main loop
+    while (IPERF_EXCLUSIVE) {
+      taskList[STATE_ETHERNET_FRAME_PULL].taskFunction();
+    }
   }
 
-  // Test in Endlosschleife
+  // Alle Task in Endlosschleife
   while (1) {
     Scheduler();    // Aufruf des Schedulers in der Endlosschleife
     StateMachine(); // Aufruf der Statemaschine
@@ -147,6 +151,7 @@ void Task2(void) {
 }
 /* Task IPERF - Measurement*/
 void IPERF(void){
+  toggleGPIO(&led_pins[3]);
   currentState = STATE_IPERF; 
 }
 
