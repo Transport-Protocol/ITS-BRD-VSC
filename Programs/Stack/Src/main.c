@@ -28,7 +28,7 @@ extern void initITSboard(void);
 /* Definitionen */
 #define TASK_COUNT 3
 /* Enumeration für den Zustand der Statemaschine */
-typedef enum { STATE_ETHERNET_FRAME_PULL, STATE_TASK1, STATE_TASK2, STATE_IDLE } State_t;
+typedef enum { STATE_ETHERNET_FRAME_PULL, STATE_MQTT_SUBSCRIBE_SESSION, STATE_MQTT_PUBLISH_SESSION, STATE_IDLE } State_t;
 
 /* Struktur für eine Task */
 typedef struct {
@@ -54,6 +54,26 @@ Task_t taskList[TASK_COUNT] = {
     {TASK_MQTT_PUBLISH_SESSION, 0, 200, true}
 
 };
+/* Indipendent Watchdog initialisierung - Restartet den Controler*/
+void IWDG_Initialisieren(uint8_t prescaler, uint16_t intervall) {
+  // Aktiviere den LSI-Takt
+  RCC->CSR |= RCC_CSR_LSION;
+
+  // Warte, bis der LSI-Takt stabil ist
+  while(!(RCC->CSR & RCC_CSR_LSIRDY));
+
+  // Entsperre den Zugriff auf die IWDG-Register
+  IWDG->KR = 0x5555;
+
+  // Stelle den prescaler ein
+  IWDG->PR = prescaler;
+
+  // Stelle den Neuladewert ein
+  IWDG->RLR = intervall;
+
+  // Starte den IWDG
+  IWDG->KR = 0xCCCC;
+}
 
 int main(void) {
   initITSboard(); // Initialisierung des ITS Boards
@@ -69,11 +89,20 @@ int main(void) {
 
   // Setup Interface
   netif_config();
+
+  // Watchdog IWDG initialisieren
+  IWDG_Initialisieren(3, 2000); // Timeout von ca. 1 Sekunde
+
   
   // Test in Endlosschleife
   while (1) {
     Scheduler();    // Aufruf des Schedulers in der Endlosschleife
     StateMachine(); // Aufruf der Statemaschine
+
+    // IWDG auffrischen und Bedingungen stellen
+   
+    IWDG->KR = 0xAAAA;
+    
   }
 }
 
@@ -83,10 +112,10 @@ void StateMachine(void) {
   case STATE_ETHERNET_FRAME_PULL:
     currentState = STATE_IDLE;
     break;
-  case STATE_TASK1:
+  case STATE_MQTT_SUBSCRIBE_SESSION:
     currentState = STATE_IDLE;
     break;
-  case STATE_TASK2:
+  case STATE_MQTT_PUBLISH_SESSION:
     currentState = STATE_IDLE;
     break;
   case STATE_IDLE:
@@ -121,21 +150,21 @@ void TASK_ETHERNET_FRAME_PULL(void) {
 }
 
 /* Task 1 - Beispielhafte Implementierung */
-void Task1(void) {
+void TASK_MQTT_SUBSCRIBE_SESSION(void) {
   // Task 1 Funktionalität
   // Beispiel: LED toggeln
   // Kommentar: Diese Task toggelt die LED1
   toggleGPIO(&led_pins[1]);
-  currentState = STATE_TASK1;
+  currentState = STATE_MQTT_SUBSCRIBE_SESSION;
 }
 
 /* Task 2 - Beispielhafte Implementierung */
-void Task2(void) {
+void TASK_MQTT_PUBLISH_SESSION(void) {
   // Task 2 Funktionalität
   // Beispiel: LED toggeln
   // Kommentar: Diese Task toggelt die LED2
   toggleGPIO(&led_pins[2]);
-  currentState = STATE_TASK2;
+  currentState = STATE_MQTT_PUBLISH_SESSION;
 }
 
 /* Erweiterungshinweis:
