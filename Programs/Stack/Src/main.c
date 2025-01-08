@@ -6,21 +6,17 @@
  ******************************************************************************
  */
 /* Includes ------------------------------------------------------------------*/
-#define STM32F429xx
-#include <arm_compat.h>
+
 
 #include "LCD_GUI.h"
-#include "stm32f4xx_hal.h"
-#include <stdint.h>
-
-#include "LCD_GUI.h"
-#include "LCD_Touch.h"
-
 #include "lcd.h"
 
+#include "stm32f4xx_hal.h"
+#include <stdint.h>
+#include "lcd.h"
 #include "led.h"
 #include "lwip_interface.h"
-
+#include "mqtt_client.h"
 
 
 extern void initITSboard(void);
@@ -79,10 +75,9 @@ int main(void) {
   initITSboard(); // Initialisierung des ITS Boards
 
   GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
-  TP_Init(false);               // Initialisierung des LCD Boards mit Touch
 
   // Begruessungstext
-  lcdPrintlnS("LWIP-project");
+  lcdPrintlnS("MQTT-project");
 
   // initialisiere den Stack 
   init_lwip_stack();
@@ -91,18 +86,17 @@ int main(void) {
   netif_config();
 
   // Watchdog IWDG initialisieren
-  IWDG_Initialisieren(3, 2000); // Timeout von ca. 1 Sekunde
-
+  //IWDG_Initialisieren(3, 2000); // Timeout von ca. 1 Sekunde
+  MQTT_ConnectTimer_Init();
   
   // Test in Endlosschleife
   while (1) {
     Scheduler();    // Aufruf des Schedulers in der Endlosschleife
     StateMachine(); // Aufruf der Statemaschine
-
+    // MQTT-Client-Test
     // IWDG auffrischen und Bedingungen stellen
-   
     IWDG->KR = 0xAAAA;
-    
+
   }
 }
 
@@ -155,6 +149,7 @@ void TASK_MQTT_SUBSCRIBE_SESSION(void) {
   // Beispiel: LED toggeln
   // Kommentar: Diese Task toggelt die LED1
   toggleGPIO(&led_pins[1]);
+  init_mqtt_subscriber();
   currentState = STATE_MQTT_SUBSCRIBE_SESSION;
 }
 
@@ -164,6 +159,7 @@ void TASK_MQTT_PUBLISH_SESSION(void) {
   // Beispiel: LED toggeln
   // Kommentar: Diese Task toggelt die LED2
   toggleGPIO(&led_pins[2]);
+  mqtt_pin_publish();
   currentState = STATE_MQTT_PUBLISH_SESSION;
 }
 
