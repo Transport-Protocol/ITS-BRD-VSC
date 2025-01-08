@@ -40,8 +40,8 @@ typedef struct {
 
 /* Funktionsdeklarationen */
 void TASK_ETHERNET_FRAME_PULL(void);
-void Task1(void);
-void Task2(void);
+void TASK_MQTT_SUBSCRIBE_SESSION(void);
+void TASK_MQTT_PUBLISH_SESSION(void);
 void Scheduler(void);
 void StateMachine(void);
 
@@ -50,8 +50,8 @@ State_t currentState = STATE_IDLE;
 uint32_t currentTime = 0; // Simulierte Zeitvariable
 Task_t taskList[TASK_COUNT] = {
     {TASK_ETHERNET_FRAME_PULL, 0, 10, true}, 
-    {Task1, 0, 100, true}, 
-    {Task2, 0, 200, true}
+    {TASK_MQTT_SUBSCRIBE_SESSION, 0, 100, true}, 
+    {TASK_MQTT_PUBLISH_SESSION, 0, 200, true}
 
 };
 
