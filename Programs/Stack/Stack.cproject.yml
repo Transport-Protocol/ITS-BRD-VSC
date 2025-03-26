@@ -1,6 +1,6 @@
 # Projektdefinition für ITSboard
 project:
-    # Packs für das Projekt, verwendet Anker & Alias, um Redundanz zu vermeiden
+  # Packs für das Projekt, verwendet Anker & Alias, um Redundanz zu vermeiden
   packs:
     - pack: Keil::STM32F4xx_DFP
     - pack: ARM::CMSIS
@@ -10,8 +10,9 @@ project:
   setups:
     - setup: Options for ITSboard
       processor:
-        fpu: sp  # Setzt den FPU-Typ auf "Single Precision"
-      add-path:  # Pfade zu Header-Dateien und weiteren Ressourcen
+        fpu: sp # Setzt den FPU-Typ auf "Single Precision"
+      add-path:
+        # Pfade zu Header-Dateien und weiteren Ressourcen
         - Inc
         - ../../stm32cubef4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
         - ../../stm32cubef4/Drivers/CMSIS/Include
@@ -26,19 +27,23 @@ project:
         - ../../lwip/src/include/lwip
       #debug: "on"  # Aktiviert den Debug-Modus
 
-      define:  # Präprozessordefinitionen
+      define:
+        # Präprozessordefinitionen
         - STM32F429xx
         - USE_HAL_DRIVER
         - USE_STM32F4XX_NUCLEO_144
         - __MICROLIB
 
-      define-asm:  # Definitionen für den Assembler
+      define-asm:
+        # Definitionen für den Assembler
         - __MICROLIB
 
       misc:
-        - C:  # C-spezifische Compiler-Optionen
+        - C:
+            # C-spezifische Compiler-Optionen
             - -std=c99
-          C-CPP:  # Optionen für C++
+          C-CPP:
+            # Optionen für C++
             - -fno-rtti
             - -funsigned-char
             - -fshort-enums
@@ -56,10 +61,12 @@ project:
             - -Wno-documentation
             - -Wno-license-management
             - -Wno-parentheses-equality
-          CPP:  # C++-spezifische Optionen
+          CPP:
+            # C++-spezifische Optionen
             - -xc++
             - -std=c++11
-          Link:  # Linker-Optionen
+          Link:
+            # Linker-Optionen
             - --library_type=microlib
             - --map
             - --load_addr_map_info
@@ -92,7 +99,8 @@ project:
     # Board-spezifische Treiber
     - group: Drivers/Board
       misc:
-        - CPP:  # C++-Optionen für diese Gruppe
+        - CPP:
+            # C++-Optionen für diese Gruppe
             - -xc++
       files:
         - file: ../../ITS_BRD_LIB/Src/startup/system_stm32f4xx.c
@@ -174,6 +182,7 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
+        - file: Inc/tcp_server.h
 
     # lwIP/Source: Netzwerkstapel-Dateien von lwIP
     - group: lwIP/Source
@@ -189,7 +198,7 @@ project:
         - file: ../../lwip/src/core/ipv4/icmp.c
         - file: ../../lwip/src/core/def.c
         - file: ../../lwip/src/core/mem.c
-        - file: ../../lwip/src/core/memp.c        
+        - file: ../../lwip/src/core/memp.c
         - file: ../../lwip/src/core/netif.c
         - file: ../../lwip/src/core/pbuf.c
         - file: ../../lwip/src/core/tcp.c
@@ -200,12 +209,12 @@ project:
         - file: ../../lwip/src/core/inet_chksum.c
         - file: ../../lwip/src/core/init.c
         - file: ../../lwip/src/core/stats.c
-        - file: ../../lwip/src/core/dns.c      
+        - file: ../../lwip/src/core/dns.c
 
     - group: Program/Arch/Inc
       files:
         - file: Inc/arch/cc.h
-        - file: Inc/arch/sys_arch.h   
+        - file: Inc/arch/sys_arch.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
@@ -213,9 +222,10 @@ project:
         - file: Src/main.c
         - file: Src/led.c
         - file: Src/lwip_interface.c
-        - file: Src/arch/sys_arch.c   
+        - file: Src/arch/sys_arch.c
+        - file: Src/tcp_server.c
 
-   # Benutzerdefinierte Programmdateien
+    # Benutzerdefinierte Programmdateien
     - group: Program/Net/Src
       files:
         - file: Src/net/ethernetif.c

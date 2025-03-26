@@ -21,7 +21,7 @@
 #include "led.h"
 #include "lwip_interface.h"
 
-
+#include "tcp_server.h"
 
 extern void initITSboard(void);
 
@@ -62,7 +62,7 @@ int main(void) {
   TP_Init(false);               // Initialisierung des LCD Boards mit Touch
 
   // Begruessungstext
-  lcdPrintlnS("LWIP-project");
+  lcdPrintlnS("TCP-Server");
 
   // initialisiere den Stack 
   init_lwip_stack();
@@ -70,6 +70,10 @@ int main(void) {
   // Setup Interface
   netif_config();
   
+  lcdPrintlnS("Initialisiere Netzwerk...");
+  /* TCP-Server starten */
+  tcp_server_init();
+  lcdPrintlnS("../done");
   // Test in Endlosschleife
   while (1) {
     Scheduler();    // Aufruf des Schedulers in der Endlosschleife
