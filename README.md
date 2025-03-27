@@ -1,4 +1,4 @@
-# !!! WICHTIG, DIESE BEISPIELE NUTZEN EINE ANDERE VERSION VON DISPLAYWAVESHARE !!!
+
 
 # Inhaltsverzeichnis
 - [Anleitung zur Installation von ST-Link](#anleitung-zur-installation-von-st-Link)
@@ -135,7 +135,7 @@ Das Arm Keil Studio Pack installiert die folgenden empfohlenen Erweiterungen fü
 
 # Anleitung zum Auschecken eines GitHub-Projekts in VS Code
 
-Folgen Sie diesen Schritten, um das GitHub-Projekt mit der URL `https://github.com/ITS-BRD/ITS-BRD.git` in Visual Studio Code auszuchecken:
+Folgen Sie diesen Schritten, um das GitHub-Projekt mit der URL  [https://github.com/...](https://github.com/Transport-Protocol/ITS-BRD-VSC) in Visual Studio Code auszuchecken:
 
 1. Öffnen Sie Visual Studio Code.
 
@@ -143,7 +143,7 @@ Folgen Sie diesen Schritten, um das GitHub-Projekt mit der URL `https://github.c
 
 3. Geben Sie "Git: Clone" in die Befehlspalette ein und wählen Sie den Befehl "Git: Clone" aus.
 
-4. Geben Sie die URL des GitHub-Repositorys ein: `https://github.com/ITS-BRD/ITS-BRD.git` oder wählen Sie aus GitHub clonen (bevorzugt) und wählen Sie ITS-BRD/ITS-BRD.
+4. Geben Sie die URL des GitHub-Repositorys ein: [https://github.com/...](https://github.com/Transport-Protocol/ITS-BRD-VSC) oder wählen Sie aus GitHub clonen (bevorzugt) und wählen Sie ITS-BRD/ITS-BRD.
 
 5. Wählen Sie einen Ordner auf Ihrem lokalen Computer aus, in den das Repository geklont werden soll.
 
@@ -159,7 +159,7 @@ Folgen Sie diesen Schritten, um das GitHub-Projekt mit der URL `https://github.c
 
 10. Klicken Sie in der unteren linken Ecke des VS Code-Fensters auf den aktuellen Branch-Namen (standardmäßig `master`). Dadurch öffnet sich die Branch-Liste.
 
-11. Suchen Sie in der Branch-Liste nach dem Branch `BCK-vsc-integration`. Wenn der Branch nicht in der Liste angezeigt wird, klicken Sie auf "Alle Branches abrufen", um die aktuelle Liste der Remote-Branches abzurufen.
+11. Suchen Sie in der Branch-Liste nach dem Branch `(aus der Vorlesung)`. Wenn der Branch nicht in der Liste angezeigt wird, klicken Sie auf "Alle Branches abrufen", um die aktuelle Liste der Remote-Branches abzurufen.
 
 ### Submodule initieren
 
@@ -213,3 +213,15 @@ Mehr: [https://developer.arm.com/documentation/101407/0541/User-Interface/Projec
 
 ## Dokumentation (To be fixed)
 - s. [Wiki ITS_BRD](https://git.haw-hamburg.de/tiboard_dev/its_brd/-/wikis/**Dokumentation-der-Software-des-ITS-Board**)
+
+
+## Troubleshooting
+
+### Probleme Submodule
+Sollte es Probleme bei dem checkout der Submodule geben, oder Fehlermeldungen erscheinen, die auf die Submodule verweisen, sollte folgendes probiert werden. 
+
+```
+git submodule foreach --recursive git reset --hard
+git submodule foreach --recursive git clean -fd
+git submodule update --init --recursive --force
+```
