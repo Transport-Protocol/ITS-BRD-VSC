@@ -1,7 +1,7 @@
 ## Inhaltsverzeichnis
 1. [Allgemein: lwIP-Projekt des RN ITS (HAW Hamburg)](#allgemein-lwip-projekt-des-rn-its-haw-hamburg)
 2. [Anmerkungen](#anmerkungen)
-3. [LiveCoding Video 01](#livecoding-video-01)
+3. [LiveCoding Video 02](#livecoding-video-02)
 
 ## Allgemein: lwIP-Projekt des RN ITS (HAW Hamburg)
 
@@ -19,32 +19,26 @@ In einer Vorlesung kann lwIP auf mehreren Ebenen didaktisch genutzt werden. Eine
 git config http.postBuffer 104857600
 ```
 
-### LiveCoding Video 01
+### LiveCoding Video 02
 
-In diesem Schritt wird eine umfassende Einführung in die Nutzung von Git und die Entwicklung eines Projekts mit dem Lightweight IP-Stack gegeben. Zu Beginn wird erläutert, wie das Projekt von GitHub heruntergeladen und die Submodule initialisiert werden. Folgende Befehle sind hierbei zentral:
+In dem aktuellen schritt vertiefen wir die Implementierung des Lightway IP Stacks auf dem Embedded Test System (ETS) Board und führen Sie durch eine praxisorientierte Live-Coding-Demonstration. Ziel ist es, Ihnen in Echtzeit Einblicke in die zentralen Funktionen und Konfigurationen des Lightway IP Stacks zu vermitteln. Diese Implementierung ermöglicht uns, eine leistungsfähige Netzwerklösung auf ressourcenbeschränkten Mikrocontrollern wie dem STM32 zu realisieren und dabei grundlegende Netzwerkprotokolle wie TCP, UDP, ICMP und DHCP zu integrieren.
 
-```bash
-git clone https://github.com/Transport-Protocol/ITS-BRD-VSC 
-git submodule init
-git submodule update --recursive
-```
+Der Lightway IP Stack, den wir einsetzen, ist speziell darauf ausgelegt, mit einem minimalen Ressourcenaufwand auszukommen und dabei dennoch den wesentlichen Anforderungen eines TCP/IP-Netzwerks gerecht zu werden. Die modulare Architektur des Stacks ist hier von besonderem Vorteil, da sie uns Flexibilität bietet, Speicher- und Verarbeitungsparameter dynamisch anzupassen und auf spezifische Anforderungen einzugehen. Diese Struktur ermöglicht eine effiziente Aufteilung der Netzwerkfunktionen auf verschiedene Module und bietet Entwicklern damit eine hohe Kontrolle über Ressourcenmanagement und Funktionsumfang.
 
-Diese Befehle stellen sicher, dass alle benötigten Bibliotheken verfügbar sind. Das vorgefertigte Projekt enthält bereits alle wesentlichen externen Codeelemente für das ITS-BRD.
+#### Lizenz und rechtliche Rahmenbedingungen
 
-Im nächsten Schritt wird die Implementierung eines neuen Features durch das Erstellen eines Branches behandelt:
+Ein weiteres wichtiges Thema ist die BSD-Lizenz, unter der der Lightway IP Stack bereitgestellt wird. Die BSD-Lizenz erlaubt eine flexible Nutzung und Anpassung des Codes, ohne dass für die Nutzung im Rahmen eines proprietären Produkts eine Offenlegung des Quellcodes erforderlich ist. Diese Lizenzierung ist besonders für kommerzielle Anwendungen auf Mikrocontroller-Basis von Interesse, da sie sowohl Anpassungen als auch die Integration in eigene Projekte ermöglicht.
 
-```bash
-git checkout -b statemachine
-oder
-git checkout -b stm
-```
+##### Architektur und Konfigurationsdateien
 
-Dies wechselt in einen neuen Entwicklungszweig für das Feature. Um bestehende Projekte nicht zu beeinträchtigen, wird empfohlen, ein neues Projekt zu erstellen. Dafür gibt es ein Skript (in bin) zum Beispiel namens „createNewProjectC.sh“ für MacOS, das den Prozess vereinfacht und sicherstellt, dass alle Werkzeuge auf dem neuesten Stand sind.
+Im praktischen Teil werden wir die Datei `lwipopts.h.h` näher betrachten, die eine Vielzahl der grundlegenden Konfigurationsparameter definiert und somit als Ausgangspunkt für die Netzwerkkonfiguration dient. Neben dieser Datei sind auch spezifische C-Dateien notwendig, die die Funktionalitäten des Netzwerkinterfaces abdecken und die Struktur des Stacks definieren. Die Parameter in diesen Konfigurationsdateien legen unter anderem fest, welche Protokolle (wie z. B. TCP und UDP) aktiv sind und wie die Speichermanagementpraxis gestaltet wird. Dies ist für eine Bare-Metal-Implementierung auf einem STM32-Mikrocontroller besonders relevant, da hier ohne Betriebssystem gearbeitet wird.
 
-Anschließend wird der Übersetzungsprozess demonstriert. Die Wichtigkeit des vorherigen „Clean All“-Befehls wird betont, um Fehlerquellen zu minimieren. Es folgt die Präsentation des Uploads auf das Board, wobei die korrekte Nutzung technischer Hilfsmittel wie USB-Verlängerungen und eine stabile Stromversorgung des Boards erklärt wird.
+##### Netzwerkkonfiguration und Hardwareanbindung
 
-Ein zentraler Teil des Videos ist die Entwicklung einer State Machine zur besseren Kontrolle des Codes. Der Referent stellt heraus, dass mindestens drei Tasks benötigt werden, die später erweiterbar sind. Eine Best-Practice-Lösung auf KI-Vorschlag-Basis werden vorgestellt, und der Einsatz von KI wie ChatGPT zur Unterstützung bei der Code-Generierung wird diskutiert. Eine Beispielimplementierung zeigt den Einsatz von Tasks, Funktionszeigern und das Task-Management.
+Die Netzwerkkonfiguration konzentriert sich dabei insbesondere auf die Initialisierung und Anpassung der Ethernet-Schnittstelle des Boards. Da die Effizienz dieser Implementierung stark von einer präzisen Anpassung abhängt, sind Anpassungen der Interrupt-Routinen notwendig, um Verzögerungen zu minimieren und eine stabile Kommunikation sicherzustellen. Die Zuweisung von MAC-Adressen sowie die Handhabung der Paketdatenströme sind hierbei entscheidende Aspekte, da sie für die reibungslose Funktion der Netzwerkanfragen verantwortlich sind.
 
-Des Weiteren wird die Modul-Erstellung für GPIO-Pin-Ansteuerungen erläutert. Dabei wird gezeigt, wie man ein Modul für die LED-Steuerung mit Header- und Source-Dateien anlegt. Precompiler-Direktiven und die Strukturierung von Funktionen werden ebenso behandelt.
+##### Live-Demonstration und praktische Anwendung
 
-Zum Abschluss wird die Integration aller erstellten Elemente und die Durchführung von Commits gezeigt, um Änderungen zu dokumentieren. Die Lecture endet mit einer Zusammenfassung und dem Appell, Best Practices in der Versionierung und Dokumentation anzuwenden.
+Während der Live-Coding-Phase wird die Implementierung des Stacks Stück für Stück erläutert und durch die Zuweisung und Konfiguration der Netzwerkparameter ergänzt. Hierbei führen wir Testmethoden ein, um die Netzwerkkommunikation zu verifizieren. Ein einfaches, aber sehr effektives Verfahren stellt der Ping-Test dar, der durch Senden von ICMP-Paketen die Reaktionszeiten des Boards prüft und somit eine schnelle Überprüfung der Netzwerkstabilität erlaubt.
+
+Diese live umgesetzte Struktur vermittelt nicht nur ein praktisches Verständnis der Netzwerkprotokolle und deren Implementierung auf einem Mikrocontroller, sondern erlaubt auch, die typischen Herausforderungen und Optimierungsmöglichkeiten im Ressourcenmanagement eines STM32 in einem Netzwerkumfeld zu erfahren. Die Studierenden werden so befähigt, das Gelernte im eigenen Umfeld direkt anzuwenden und eine vertiefte Einsicht in die Problematik der Netzwerkimplementierung auf Embedded-Systemen zu entwickeln.

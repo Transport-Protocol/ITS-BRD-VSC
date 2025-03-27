@@ -21,7 +21,9 @@ project:
         - ../../DisplayWaveshare/Inc
         - ../../ITS_BRD_LIB/Inc
         - ../../ITS_BRD_LIB/Utilities/AddFonts
-
+        - ../../lwip
+        - ../../lwip/src/include/
+        - ../../lwip/src/include/lwip
       #debug: "on"  # Aktiviert den Debug-Modus
 
       define:  # Präprozessordefinitionen
@@ -173,12 +175,49 @@ project:
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
 
+    # lwIP/Source: Netzwerkstapel-Dateien von lwIP
+    - group: lwIP/Source
+      files:
+        - file: ../../lwip/src/netif/ethernet.c
+        - file: ../../lwip/src/core/ipv4/ip4.c
+        - file: ../../lwip/src/core/ip.c
+        - file: ../../lwip/src/core/ipv4/ip4_addr.c
+        - file: ../../lwip/src/core/ipv4/ip4_frag.c
+        - file: ../../lwip/src/core/ipv4/acd.c
+        - file: ../../lwip/src/core/ipv4/dhcp.c
+        - file: ../../lwip/src/core/ipv4/etharp.c
+        - file: ../../lwip/src/core/ipv4/icmp.c
+        - file: ../../lwip/src/core/def.c
+        - file: ../../lwip/src/core/mem.c
+        - file: ../../lwip/src/core/memp.c        
+        - file: ../../lwip/src/core/netif.c
+        - file: ../../lwip/src/core/pbuf.c
+        - file: ../../lwip/src/core/tcp.c
+        - file: ../../lwip/src/core/tcp_in.c
+        - file: ../../lwip/src/core/tcp_out.c
+        - file: ../../lwip/src/core/timeouts.c
+        - file: ../../lwip/src/core/udp.c
+        - file: ../../lwip/src/core/inet_chksum.c
+        - file: ../../lwip/src/core/init.c
+        - file: ../../lwip/src/core/stats.c
+        - file: ../../lwip/src/core/dns.c      
+
+    - group: Program/Arch/Inc
+      files:
+        - file: Inc/arch/cc.h
+        - file: Inc/arch/sys_arch.h   
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
         - file: Src/main.c
         - file: Src/led.c
+        - file: Src/lwip_interface.c
+        - file: Src/arch/sys_arch.c   
 
+   # Benutzerdefinierte Programmdateien
+    - group: Program/Net/Src
+      files:
+        - file: Src/net/ethernetif.c
   components:
     - component: ARM::CMSIS:CORE
