@@ -21,11 +21,117 @@ git config http.postBuffer 104857600
 
 ### LiveCoding Video 02
 
-In dem aktuellen schritt vertiefen wir die Implementierung des Lightway IP Stacks auf dem Embedded Test System (ETS) Board und führen Sie durch eine praxisorientierte Live-Coding-Demonstration. Ziel ist es, Ihnen in Echtzeit Einblicke in die zentralen Funktionen und Konfigurationen des Lightway IP Stacks zu vermitteln. Diese Implementierung ermöglicht uns, eine leistungsfähige Netzwerklösung auf ressourcenbeschränkten Mikrocontrollern wie dem STM32 zu realisieren und dabei grundlegende Netzwerkprotokolle wie TCP, UDP, ICMP und DHCP zu integrieren.
+TODO
 
-Der Lightway IP Stack, den wir einsetzen, ist speziell darauf ausgelegt, mit einem minimalen Ressourcenaufwand auszukommen und dabei dennoch den wesentlichen Anforderungen eines TCP/IP-Netzwerks gerecht zu werden. Die modulare Architektur des Stacks ist hier von besonderem Vorteil, da sie uns Flexibilität bietet, Speicher- und Verarbeitungsparameter dynamisch anzupassen und auf spezifische Anforderungen einzugehen. Diese Struktur ermöglicht eine effiziente Aufteilung der Netzwerkfunktionen auf verschiedene Module und bietet Entwicklern damit eine hohe Kontrolle über Ressourcenmanagement und Funktionsumfang.
+### Mosquitto Installation und Konfiguration
 
-#### Lizenz und rechtliche Rahmenbedingungen
+Diese Anleitung beschreibt, wie der MQTT-Broker "Mosquitto" auf macOS, Linux und Windows installiert wird und wie man ihn mit einer einfachen Konfiguration startet, die Verbindungen von jedem Client und jeder IP-Adresse erlaubt.
+
+#### 1. Installation
+
+### macOS
+**Voraussetzung:** Homebrew ist installiert.
+
+```bash
+brew install mosquitto
+```
+
+Mosquitto kann nach der Installation als Dienst laufen oder im Vordergrund gestartet werden.
+
+##### Linux (Debian/Ubuntu)
+
+```bash
+sudo apt update
+sudo apt install mosquitto mosquitto-clients
+```
+
+##### Linux (RHEL/CentOS)
+
+```bash
+sudo dnf install mosquitto
+```
+
+##### Windows
+
+1. Lade die neueste Mosquitto-Version von der [offiziellen Mosquitto-Website](https://mosquitto.org/download/) herunter.
+2. Führe das Installationsprogramm aus und folge den Anweisungen.
+3. Stelle sicher, dass die Option zur Installation als Dienst deaktiviert wird, falls der Broker manuell gestartet werden soll.
+
+---
+
+#### 2. Einfache Konfiguration
+
+Erstelle eine neue Konfigurationsdatei z.B. `mosquitto.conf` mit folgendem Inhalt:
+
+```ini
+listener 1883 0.0.0.0
+allow_anonymous true
+```
+
+**Erklärung:**
+- `listener 1883 0.0.0.0` – Mosquitto lauscht auf Port 1883 und akzeptiert Verbindungen von jeder IP-Adresse.
+- `allow_anonymous true` – Jeder Client kann sich verbinden, ohne Authentifizierung.
+
+---
+
+#### 3. Start des Brokers im Vordergrund
+
+###### macOS/Linux
+
+```bash
+mosquitto -c /path/to/mosquitto.conf
+```
+
+###### Windows (Eingabeaufforderung oder PowerShell)
+
+```bash
+"C:\Program Files\Mosquitto\mosquitto.exe" -c C:\path\to\mosquitto.conf
+```
+
+---
+
+#### 4. Test der Verbindung
+
+Auf einem anderen Gerät oder lokal:
+
+```bash
+mosquitto_sub -h [IP des Brokers] -t test/topic
+mosquitto_pub -h [IP des Brokers] -t test/topic -m "Hello World"
+```
+
+Wenn die Nachricht empfangen wird, funktioniert der Broker wie gewünscht.
+
+#### 5. Beobachtung und Steuerung für das BRD zum Testen
+
+Um ein bestimmtes Topic zu beobachten und Nachrichten zu senden, kann der folgende Befehl genutzt werden:
+
+##### Beobachten des Topics `/its-board/status/giod6`
+
+Beobachten Sie den Status den BLAUEN Tasters auf dem Board!
+```bash
+mosquitto_sub -h [IP des Brokers] -t /its-board/status/gioP 
+```
+
+##### Nachricht "Set" in das Topic senden
+Beobachten Sie GPIO_PIN_4 auf GPIO E
+```bash
+mosquitto_pub -h [IP des Brokers] -t /its-board/status/gioS -m "Set"
+```
+
+##### Nachricht "Reset" in das Topic senden
+Beobachten Sie GPIO_PIN_4 auf GPIO E
+```bash
+mosquitto_pub -h [IP des Brokers] -t /its-board/status/gioS -m "Reset"
+```
+
+---
+
+#### 5. Sicherheitswarnung
+Diese Konfiguration ist für Test- und Entwicklungszwecke gedacht. Für Produktionsumgebungen sollten zusätzliche Sicherheitsmaßnahmen wie Authentifizierung und TLS-Verschlüsselung implementiert werden.
+```
+
+
+##### Lizenz und rechtliche Rahmenbedingungen
 
 Ein weiteres wichtiges Thema ist die BSD-Lizenz, unter der der Lightway IP Stack bereitgestellt wird. Die BSD-Lizenz erlaubt eine flexible Nutzung und Anpassung des Codes, ohne dass für die Nutzung im Rahmen eines proprietären Produkts eine Offenlegung des Quellcodes erforderlich ist. Diese Lizenzierung ist besonders für kommerzielle Anwendungen auf Mikrocontroller-Basis von Interesse, da sie sowohl Anpassungen als auch die Integration in eigene Projekte ermöglicht.
 

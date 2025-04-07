@@ -10,14 +10,11 @@
 
 #include "LCD_GUI.h"
 #include "lcd.h"
-
-#include "stm32f4xx_hal.h"
 #include <stdint.h>
 #include "lcd.h"
 #include "led.h"
 #include "lwip_interface.h"
 #include "mqtt_client.h"
-
 
 extern void initITSboard(void);
 
@@ -86,17 +83,16 @@ int main(void) {
   netif_config();
 
   // Watchdog IWDG initialisieren
-  //IWDG_Initialisieren(3, 2000); // Timeout von ca. 1 Sekunde
+  IWDG_Initialisieren(3, 2000); // Timeout von ca. 1 Sekunde
   MQTT_ConnectTimer_Init();
   
   // Test in Endlosschleife
   while (1) {
     Scheduler();    // Aufruf des Schedulers in der Endlosschleife
     StateMachine(); // Aufruf der Statemaschine
-    // MQTT-Client-Test
+
     // IWDG auffrischen und Bedingungen stellen
     IWDG->KR = 0xAAAA;
-
   }
 }
 

@@ -45,8 +45,8 @@
 #define MQTT_BROKER_IP "192.168.33.1"
 #define MQTT_BROKER_PORT 1883
 #define MQTT_CLIENT_ID "its-board-client"
-#define MQTT_PUBLISH_TOPIC "/its-board/status/giod6"
-#define MQTT_SUBSCRIBE_TOPIC "/its-board/action/giod6"
+#define MQTT_PUBLISH_TOPIC "/its-board/status/gioP"
+#define MQTT_SUBSCRIBE_TOPIC "/its-board/status/gioS"
 #define MQTT_QUEUE_SIZE 3
 
 #define TIM2_INTERVAL 1000
@@ -63,9 +63,6 @@ static int queue_size = 0;
 static char received_topic[64];
 static struct mqtt_connect_client_info_t client_info;
 static ip_addr_t broker_ipaddr;
-// For the LED Stuff
-#define GPIO_LED GPIO_PIN_6
-#define GPIO_LED_PORT GPIOD
 
 typedef enum {
   MQTT_EVENT_NONE,
@@ -126,14 +123,12 @@ static void mqtt_incoming_publish_cb(void *arg, const char *topic,
                                      u32_t tot_len);
 static void mqtt_incoming_data_cb(void *arg, const u8_t *data, u16_t len,
                                   u8_t flags);
-
-
-
-
-
+static void handle_led_action(led_action_t led_action); 
 static TIM_HandleTypeDef htim2;
 
-// Interrupt handlers
+/** 
+* Interrupt handlers
+*/ 
 void TIM2_IRQHandler(void) {
   if (__HAL_TIM_GET_FLAG(&htim2, TIM_FLAG_UPDATE) != RESET &&
       __HAL_TIM_GET_IT_SOURCE(&htim2, TIM_IT_UPDATE) != RESET) {
@@ -144,7 +139,6 @@ void TIM2_IRQHandler(void) {
    
   }
 }
-
 
 /**
  * @brief  Initialisiert den TIM2 als Verbindungstimer für MQTT.
@@ -252,7 +246,7 @@ static void publish_gpio_status() {
   static uint16_t error_thresh = PUBLISH_ERROR_THRESHOLD;
 
   // Read the current state of the LED GPIO
-  GPIO_PinState gpio_status = HAL_GPIO_ReadPin(GPIO_LED_PORT, GPIO_LED);
+  GPIO_PinState gpio_status = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
   char status_msg[2];
   snprintf(status_msg, sizeof(status_msg), "%d", gpio_status);
 
@@ -268,6 +262,7 @@ static void publish_gpio_status() {
 
     if (error_thresh--)
       return;
+
     internal_error = Internal_error_GPIO_status_publish_failed;
     mqtt_event = MQTT_EVENT_ERROR;
   }
@@ -379,6 +374,7 @@ void mqtt_client_update(mqtt_client_t *mqtt_client) {
     case MQTT_EVENT_DATA_RECEIVED:
       // Process received messages and determine LED action
       led_action = mqtt_handle_messages();
+      handle_led_action(led_action);
       break;
     case MQTT_EVENT_ERROR:
       // Handle error condition (implement error handling as needed)
@@ -444,4 +440,13 @@ static mqtt_message_t *dequeue_message_main(void) {
   queue_size--;
 
   return message;
+}
+
+// Perform the LED action (set or reset)
+static void handle_led_action(led_action_t led_action) {
+  if (led_action != LED_ACTION_NONE) {
+    GPIO_PinState gpio_status =
+        (led_action == LED_ACTION_SET) ? GPIO_PIN_SET : GPIO_PIN_RESET;
+    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_4, gpio_status);
+  }
 }
