@@ -12,3 +12,11 @@ spec:
     port: 1883
     targetPort: 1883
   type: ClusterIP
+spec:
+  type: NodePort
+  ports:
+    - port: 1883
+      targetPort: 1883
+      nodePort: 31883
+  selector:
+    app: mosquitto
