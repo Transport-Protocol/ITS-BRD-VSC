@@ -8,7 +8,7 @@
 Das Projekt erstellt einen einfachen TCP-Echo-Server auf dem ITS-Board, der eingehende Verbindungen akzeptiert und eine "Hello World"-Nachricht sendet. Empfangene Daten werden als Echo zurückgesendet und auf dem LCD-Display angezeigt. Es demonstriert grundlegende Netzwerkprogrammierung mit der LWIP-Bibliothek auf Mikrocontrollern.
 
 ### Anmerkungen
-Wenn das Interface zum ITS Brd mit einer Adresse aus 192.169.33.0/24 konfiguiert ist (nicht 192.168.33.99), kann das Setup getestet werden mit:
+Wenn das Interface zum ITS Brd mit einer Adresse aus 192.168.33.0/24 konfiguiert ist (nicht 192.168.33.99), kann das Setup getestet werden mit:
 ```bash
 nc 192.168.33.99 7
 ```
