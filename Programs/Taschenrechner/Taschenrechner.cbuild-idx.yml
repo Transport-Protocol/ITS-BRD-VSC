@@ -1,0 +1,20 @@
+build-idx:
+  generated-by: csolution version 2.11.0
+  cdefault: ${CMSIS_COMPILER_ROOT}/cdefault.yml
+  csolution: Taschenrechner.csolution.yml
+  cbuild-run: out/Taschenrechner+ITSboard.cbuild-run.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: Taschenrechner.cproject.yml
+  cbuilds:
+    - cbuild: out/Taschenrechner/ITSboard/Debug/Taschenrechner.Debug+ITSboard.cbuild.yml
+      project: Taschenrechner
+      configuration: .Debug+ITSboard
+      messages:
+        info:
+          - Taschenrechner.cbuild-pack.yml - file is already up-to-date
+          - Taschenrechner+ITSboard.cbuild-run.yml - file is already up-to-date
+          - Taschenrechner.Debug+ITSboard.cbuild.yml - file is already up-to-date
+      packs-unused:
+        - pack: ARM::CMSIS-DSP@1.16.2
+        - pack: ARM::CMSIS-NN@7.0.0

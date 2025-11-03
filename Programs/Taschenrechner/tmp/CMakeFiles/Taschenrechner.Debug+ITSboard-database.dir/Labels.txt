@@ -1,0 +1,11 @@
+# Target labels
+ Taschenrechner.Debug+ITSboard
+# Source files and their labels
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-database
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-database.rule
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-database.rule
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-configure.rule
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-patch.rule
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-update.rule
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-download.rule
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-mkdir.rule

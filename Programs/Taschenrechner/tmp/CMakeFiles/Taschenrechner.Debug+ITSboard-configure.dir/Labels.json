@@ -1,0 +1,34 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-configure"
+		},
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-configure.rule"
+		},
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-configure.rule"
+		},
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-patch.rule"
+		},
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-update.rule"
+		},
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-download.rule"
+		},
+		{
+			"file" : "D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/Taschenrechner.Debug+ITSboard/src/Taschenrechner.Debug+ITSboard-stamp/Taschenrechner.Debug+ITSboard-mkdir.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Taschenrechner.Debug+ITSboard"
+		],
+		"name" : "Taschenrechner.Debug+ITSboard-configure"
+	}
+}

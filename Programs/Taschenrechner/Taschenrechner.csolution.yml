@@ -1,0 +1,30 @@
+solution:
+  created-for: CMSIS-Toolbox@2.4.0
+  cdefault:
+  compiler: AC6
+
+  # List the packs that define the device and/or board.
+  packs:
+    - pack: Keil::STM32NUCLEO_BSP@1.8.1
+    - pack: Keil::STM32F4xx_DFP@2.17.1
+    - pack: ARM::CMSIS@6.1.0
+
+  # List different hardware targets that are used to deploy the solution.
+  target-types:
+    - type: ITSboard
+      board: STMicroelectronics::NUCLEO-F429ZI:Rev.B
+      device: STMicroelectronics::STM32F429ZITx
+
+  # List of different build configurations.
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: none
+
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  # List related projects.
+  projects:
+    - project: Taschenrechner.cproject.yml

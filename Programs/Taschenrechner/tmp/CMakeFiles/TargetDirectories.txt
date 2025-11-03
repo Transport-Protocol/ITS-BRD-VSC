@@ -1,0 +1,8 @@
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/database.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-build.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-configure.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-executes.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/Taschenrechner.Debug+ITSboard-database.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/edit_cache.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/CMakeFiles/rebuild_cache.dir

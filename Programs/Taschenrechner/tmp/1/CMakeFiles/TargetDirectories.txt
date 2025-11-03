@@ -1,0 +1,11 @@
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/database.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Taschenrechner.Debug+ITSboard.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_Drivers_BSP_STM32F4xx_Nucleo_144.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_Drivers_Board.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_Drivers_STM32F4xx_HAL_Driver.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_Utils.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_LCD.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_ITS_BRD_LIB.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/Group_Program_User_Src.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/edit_cache.dir
+D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner/tmp/1/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+cmd='C:/Users/drago/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake.exe;-G;Ninja;-S;<SOURCE_DIR>;-B;<BINARY_DIR>;-DSOLUTION_ROOT=D:/Dokumente/_HAW/Projekte/ITS-BRD-VSC/Programs/Taschenrechner;-DCMSIS_PACK_ROOT=C:/Users/drago/AppData/Local/arm/packs;-DCMSIS_COMPILER_ROOT=C:/Users/drago/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.11.0/etc'
