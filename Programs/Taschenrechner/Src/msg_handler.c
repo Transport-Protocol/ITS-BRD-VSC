@@ -49,14 +49,14 @@ void printMessage(int num) {
         case 1:
             printStdout("Stack leer."); break;
         case -1:
-            printStdout("Stack Overflow! (Reset mit C)"); break;
+            printStdout("Stack Overflow!\n(Reset mit C)"); break;
         case -2:
-            printStdout("Stack Underflow! (Reset mit C)"); break;
+            printStdout("Stack Underflow!\n(Reset mit C)"); break;
         case -3:
-            printStdout("Arithmetic Overflow! (Reset mit C)"); break;
+            printStdout("Arithmetic Overflow!\n(Reset mit C)"); break;
         case -4:
-            printStdout("Durch 0 geteilt (So möge Sie der Blitz treffen.)"); break;
+            printStdout("Durch 0 geteilt\n(So möge Sie der Blitz treffen.)"); break;
         case -5:
-            printStdout("Unexpected Input! (What? How?)");
+            printStdout("Unexpected Input!\n(Reset mit C)");
     }
 }

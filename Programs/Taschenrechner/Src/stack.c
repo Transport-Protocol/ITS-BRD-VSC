@@ -1,7 +1,7 @@
 #include "stack.h"
 #include <stdbool.h>
 
-#define MAX_SIZE 10
+#define MAX_SIZE 100
 
 typedef struct {
     int array[MAX_SIZE];

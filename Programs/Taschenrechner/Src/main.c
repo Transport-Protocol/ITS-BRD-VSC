@@ -33,7 +33,7 @@ int main(void) {
 			case OVERFLOW:
 				state = -1; break;
 			
-			case PLUS:
+/* 			case PLUS:
 				state = add(); break;
 
 			case MINUS:
@@ -49,7 +49,7 @@ int main(void) {
 				state = duplicate(); break;
 
 			case SWAP:
-				state = roleswap(); break;
+				state = roleswap(); break; */
 
 			case PRT: case PRT_ALL:
 				clearStdout();
