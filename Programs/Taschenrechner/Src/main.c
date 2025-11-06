@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  Franz Korf
-  * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
+  * @author  René Rudzki
+  * @brief   RPN Taschenrechner über Touch-Display des ITS-Boards.
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
@@ -19,10 +19,10 @@ static T_token input = {UNEXPECTED, 0};
 static int state = 0;
 
 int main(void) {
-	initITSboard();    // Initialisierung des ITS Boards	
+	initITSboard();    // Initialisierung des ITS-Boards	
 	initDisplay();    // Initialisierung des Displays
 	
-	// Test in Endlosschleife
+	// Ausführung in Endlosschleife
 	while(1) {
 		input = nextToken();
 
@@ -33,23 +33,11 @@ int main(void) {
 			case OVERFLOW:
 				state = -1; break;
 			
-/* 			case PLUS:
-				state = add(); break;
-
-			case MINUS:
-				state = subtract(); break;
-
-			case MULT:
-				state = multiply(); break;
-
-			case DIV:
-				state = divide(); break;
-
+			case PLUS: case MINUS: case MULT: case DIV: case SWAP:
+				state = calculate(input.tok); break;
+			
 			case DOUBLE:
 				state = duplicate(); break;
-
-			case SWAP:
-				state = roleswap(); break; */
 
 			case PRT: case PRT_ALL:
 				clearStdout();

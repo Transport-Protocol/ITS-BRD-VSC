@@ -1,11 +1,12 @@
 #include "msg_handler.h"
 #include "display.h"
-#include "scanner.h"
+#include "limits.h"
 #include "token.h"
+#include "scanner.h"
 
 int sizeofInt(int value) {
     int count = 2;    // Allocate for '\n' + '\0'
-    if (value <= 0) { count++; }    // Allocate for '-' || '0'
+    if (value <= 0) { count++; }    // Allocate for '0' || '-'
     while (value != 0) {
         count++;
         value = value / 10;
@@ -20,21 +21,25 @@ void printNumber(int value) {
     str[i] = '\0'; i--;
     str[i] = '\n'; i--;
 
-    if (value < 0) {
-        str[0] = '-';
-        value = -value;
+    if (value == 0) { str[0] = '0'; }
+    else {
+        if (value < 0) {
+            if (value == INT_MIN) {
+                str[i] = '8';
+                value = value / 10;
+                i--;
+            }
+            str[0] = '-';
+            value = -value;
+        }
+        
+        while (value > 0) {
+            str[i] = value % 10 + '0';
+            value = value / 10;
+            i--;
+        }
     }
-
-    if (value == 0) {
-        str[i] = '0';
-    }
-
-    while (value > 0) {
-        str[i] = value % 10 + '0';
-        value = value / 10;
-        i--;
-    }
-
+    
     if (isBottomLine()) {
         printStdout("Mit P fortfahren...");
         T_token input = nextToken();
@@ -55,8 +60,10 @@ void printMessage(int num) {
         case -3:
             printStdout("Arithmetic Overflow!\n(Reset mit C)"); break;
         case -4:
-            printStdout("Durch 0 geteilt\n(So möge Sie der Blitz treffen.)"); break;
+            printStdout("Durch 0 geteilt!\n(So moege Sie der\nBlitz treffen.)"); break;
         case -5:
             printStdout("Unexpected Input!\n(Reset mit C)");
     }
 }
+
+//EOF

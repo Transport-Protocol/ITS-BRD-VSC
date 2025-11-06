@@ -1,18 +1,11 @@
 #ifndef OPERATIONS_H
 #define OPERATIONS_H
 
-int add(void);
-
-int subtract(void);
-
-int multiply(void);
-
-int divide(void);
+int calculate(char token);
 
 int duplicate(void);
 
-int roleswap(void);
-
-void printOps(char all);
+void printOps(char token);
 
 #endif /* OPERATIONS_H */
+// EOF

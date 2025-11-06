@@ -47,3 +47,5 @@ int stackPeek(int *value, int depth) {
 void clearStack(void) {
     stack.top = -1;
 }
+
+// EOF
