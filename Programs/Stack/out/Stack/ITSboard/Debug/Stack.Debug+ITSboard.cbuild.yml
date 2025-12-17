@@ -1,0 +1,413 @@
+build:
+  generated-by: csolution version 2.11.0
+  solution: ../../../../Stack.csolution.yml
+  project: ../../../../Stack.cproject.yml
+  context: Stack.Debug+ITSboard
+  compiler: AC6
+  board: STMicroelectronics::NUCLEO-F429ZI:Rev.B
+  board-pack: Keil::STM32NUCLEO_BSP@1.8.1
+  board-books:
+    - name: https://www.st.com/en/evaluation-tools/nucleo-f429zi.html#overview
+      title: NUCLEO-F429ZI board
+      category: overview
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32NUCLEO_BSP/1.8.1/Documents/nucleo-f429zi.pdf
+      title: Overview
+      category: overview
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32NUCLEO_BSP/1.8.1/Documents/DM00105928.pdf
+      title: Getting started
+      category: setup
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32NUCLEO_BSP/1.8.1/Documents/DM00244518.pdf
+      title: User Manual
+      category: manual
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32NUCLEO_BSP/1.8.1/Documents/MB1137.pdf
+      title: Schematics
+      category: schematic
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32NUCLEO_BSP/1.8.1/Boards/ST/NUCLEO-F429ZI/Documentation/README.md
+      title: Guide
+      category: other
+  device: STMicroelectronics::STM32F429ZITx
+  device-pack: Keil::STM32F4xx_DFP@2.17.1
+  device-books:
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/DM00031020.pdf
+      title: STM32F40x/41x/42x/43x Reference Manual
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/DM00071990.pdf
+      title: STM32F427/429 Data Sheet
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/DM00068628.pdf
+      title: STM32F42x/43x Errata Sheet
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/dui0553a_cortex_m4_dgug.pdf
+      title: Cortex-M4 Generic User Guide
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/DM00105879.pdf
+      title: STM32F4xx HAL Drivers
+    - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/DM00104712.pdf
+      title: STM32CubeMX User Manual
+  dbgconf:
+    - file: ../../../../.cmsis/Stack+ITSboard.dbgconf
+      version: 0.0.0
+  processor:
+    endian: little
+    fpu: sp
+    core: Cortex-M4
+  packs:
+    - pack: ARM::CMSIS@6.1.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0
+    - pack: Keil::STM32F4xx_DFP@2.17.1
+      path: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1
+    - pack: Keil::STM32NUCLEO_BSP@1.8.1
+      path: ${CMSIS_PACK_ROOT}/Keil/STM32NUCLEO_BSP/1.8.1
+  optimize: none
+  debug: on
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -std=gnu11
+      - -Wno-macro-redefined
+      - -Wno-pragma-pack
+      - -Wno-parentheses-equality
+      - -Wno-license-management
+      - -std=c99
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+    CPP:
+      - -Wno-macro-redefined
+      - -Wno-pragma-pack
+      - -Wno-parentheses-equality
+      - -Wno-license-management
+      - -xc++
+      - -std=c++11
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+    Link:
+      - --entry=Reset_Handler
+      - --info=summarysizes
+      - --summary_stderr
+      - --diag_suppress=L6314W
+      - --library_type=microlib
+      - --map
+      - --load_addr_map_info
+      - --xref
+      - --callgraph
+      - --symbols
+      - --info sizes
+      - --info totals
+      - --info unused
+      - --info veneers
+      - --diag_suppress=L6329
+      - --strict
+      - --info summarysizes
+  define:
+    - STM32F429xx
+    - USE_HAL_DRIVER
+    - USE_STM32F4XX_NUCLEO_144
+    - __MICROLIB
+    - STM32F429xx
+    - _RTE_
+  define-asm:
+    - __MICROLIB
+    - STM32F429xx
+    - _RTE_
+  add-path:
+    - ../../../../Inc
+    - ../../../../../../stm32cubef4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+    - ../../../../../../stm32cubef4/Drivers/CMSIS/Include
+    - ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Inc
+    - ../../../../../../stm32cubef4/Drivers/BSP/STM32F4xx_Nucleo_144
+    - ../../../../../../stm32cubef4/Utilities/Fonts
+    - ../../../../../../DisplayWaveshare/Inc
+    - ../../../../../../ITS_BRD_LIB/Inc
+    - ../../../../../../ITS_BRD_LIB/Utilities/AddFonts
+    - ../../../../../../lwip
+    - ../../../../../../lwip/src/include
+    - ../../../../../../lwip/src/include/lwip
+    - ../../../../RTE/_Debug_ITSboard
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  add-path-asm:
+    - ../../../../RTE/_Debug_ITSboard
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  output-dirs:
+    intdir: ../../../../tmp
+    outdir: .
+    rtedir: ../../../../RTE
+  output:
+    - type: elf
+      file: Stack.axf
+  components:
+    - component: ARM::CMSIS:CORE@6.1.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@6.1.0
+      selected-by: ARM::CMSIS:CORE
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+          category: include
+          version: 6.1.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Core/Include/tz_context.h
+          category: header
+          version: 6.1.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Core/Template/ARMv8-M/main_s.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: Secure mode 'main' module for ARMv8-M
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Core/Template/ARMv8-M/tz_context.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: RTOS Context Management (TrustZone for ARMv8-M)
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.1.0/CMSIS/Documentation/html/Core/index.html
+          category: doc
+          version: 6.1.0
+  linker:
+    script: ../../../../Stack_ITSboard.sct
+  groups:
+    - group: Doc
+      files:
+        - file: ../../../../README.md
+          category: doc
+    - group: Drivers/BSP/STM32F4xx_Nucleo_144
+      files:
+        - file: ../../../../../../stm32cubef4/Drivers/BSP/STM32F4xx_Nucleo_144/stm32f4xx_nucleo_144.c
+          category: sourceC
+    - group: Drivers/Board
+      misc:
+        CPP:
+          - -xc++
+      files:
+        - file: ../../../../../../ITS_BRD_LIB/Src/startup/system_stm32f4xx.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/startup/stm32f4xx_it.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/startup/startup_stm32f429xx.s
+          category: sourceAsm
+    - group: Drivers/STM32F4xx_HAL_Driver
+      files:
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c
+          category: sourceC
+    - group: Utils
+      files:
+        - file: ../../../../../../stm32cubef4/Utilities/Fonts/font8.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Utilities/Fonts/font12.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Utilities/Fonts/font16.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Utilities/Fonts/font20.c
+          category: sourceC
+        - file: ../../../../../../stm32cubef4/Utilities/Fonts/font24.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/Consolas40.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/Consolas60.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/Consolas80.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/Consolas90.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold40.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold60.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold80.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold90.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/CourierNew48.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/CourierNewBold40.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/CourierNewBold60.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono40.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono60.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono80.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono90.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium40.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium60.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium80.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium90.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Utilities/AddFonts/fontsFLASH.c
+          category: sourceC
+    - group: LCD
+      files:
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_Driver.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_GUI.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_Touch.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_SPI.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_GPIO.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_TIM.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_Tools.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/testsoftware.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_Debug.c
+          category: sourceC
+        - file: ../../../../../../DisplayWaveshare/Src/LCD_Demos.c
+          category: sourceC
+    - group: ITS_BRD_LIB
+      files:
+        - file: ../../../../../../ITS_BRD_LIB/Src/error.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/lcd.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/init.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/terminal.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/keypad.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/delay.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/timer.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/USART_STM32F4xx.c
+          category: sourceC
+        - file: ../../../../../../ITS_BRD_LIB/Src/stdinout_USART.c
+          category: sourceC
+    - group: Program/User/Inc
+      files:
+        - file: ../../../../../../ITS_BRD_LIB/Inc/lcd.h
+          category: header
+    - group: lwIP/Source
+      files:
+        - file: ../../../../../../lwip/src/netif/ethernet.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/ip4.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ip.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/ip4_addr.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/ip4_frag.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/acd.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/dhcp.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/etharp.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/ipv4/icmp.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/def.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/mem.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/memp.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/netif.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/pbuf.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/tcp.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/tcp_in.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/tcp_out.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/timeouts.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/udp.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/inet_chksum.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/init.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/stats.c
+          category: sourceC
+        - file: ../../../../../../lwip/src/core/dns.c
+          category: sourceC
+    - group: Program/Arch/Inc
+      files:
+        - file: ../../../../Inc/arch/cc.h
+          category: header
+        - file: ../../../../Inc/arch/sys_arch.h
+          category: header
+    - group: Program/User/Src
+      files:
+        - file: ../../../../Src/main.c
+          category: sourceC
+        - file: ../../../../Src/led.c
+          category: sourceC
+        - file: ../../../../Src/lwip_interface.c
+          category: sourceC
+        - file: ../../../../Src/arch/sys_arch.c
+          category: sourceC
+    - group: Program/Net/Src
+      files:
+        - file: ../../../../Src/net/ethernetif.c
+          category: sourceC
+  constructed-files:
+    - file: ../../../../RTE/_Debug_ITSboard/RTE_Components.h
+      category: header
+  licenses:
+    - license: <unknown>
+      packs:
+        - pack: Keil::STM32F4xx_DFP@2.17.1
+    - license: <unknown>
+      packs:
+        - pack: Keil::STM32NUCLEO_BSP@1.8.1
+    - license: Apache-2.0
+      packs:
+        - pack: ARM::CMSIS@6.1.0
+      components:
+        - component: ARM::CMSIS:CORE@6.1.0

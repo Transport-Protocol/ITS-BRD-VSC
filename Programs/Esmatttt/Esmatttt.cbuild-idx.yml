@@ -1,0 +1,23 @@
+build-idx:
+  generated-by: csolution version 2.12.0
+  cdefault: ${CMSIS_COMPILER_ROOT}/cdefault.yml
+  csolution: Esmatttt.csolution.yml
+  cbuild-run: out/Esmatttt+ITSboard.cbuild-run.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: Esmatttt.cproject.yml
+  cbuilds:
+    - cbuild: out/Esmatttt/ITSboard/Debug/Esmatttt.Debug+ITSboard.cbuild.yml
+      project: Esmatttt
+      configuration: .Debug+ITSboard
+      errors: true
+      messages:
+        errors:
+          - file '/Users/esmatrabaki/ITS-BRD-VSC/Programs/Esmatttt/.cmsis/Esmatttt+ITSboard.dbgconf' not found; use --update-rte
+        info:
+          - Esmatttt.cbuild-pack.yml - file is already up-to-date
+          - Esmatttt+ITSboard.cbuild-run.yml - file is already up-to-date
+          - Esmatttt.Debug+ITSboard.cbuild.yml - file is already up-to-date
+      packs-unused:
+        - pack: ARM::CMSIS-DSP@1.16.2
+        - pack: ARM::CMSIS-NN@7.0.0

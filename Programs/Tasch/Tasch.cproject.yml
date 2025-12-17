@@ -1,0 +1,188 @@
+# Projektdefinition für ITSboard
+project:
+    # Packs für das Projekt, verwendet Anker & Alias, um Redundanz zu vermeiden
+  packs:
+    - pack: Keil::STM32F4xx_DFP
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-NN
+    - pack: ARM::CMSIS-DSP
+
+  setups:
+    - setup: Options for ITSboard
+      processor:
+        fpu: sp  # Setzt den FPU-Typ auf "Single Precision"
+      add-path:  # Pfade zu Header-Dateien und weiteren Ressourcen
+        - Inc
+        - ../../stm32cubef4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+        - ../../stm32cubef4/Drivers/CMSIS/Include
+        - ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Inc
+        - ../../stm32cubef4/Drivers/BSP/STM32F4xx_Nucleo_144
+        - ../../stm32cubef4/Utilities/Fonts
+        - ../../DisplayWaveshare/Inc
+        - ../../ITS_BRD_LIB/Inc
+        - ../../ITS_BRD_LIB/Utilities/AddFonts
+
+      #debug: "on"  # Aktiviert den Debug-Modus
+
+      define:  # Präprozessordefinitionen
+        - STM32F429xx
+        - USE_HAL_DRIVER
+        - USE_STM32F4XX_NUCLEO_144
+        - __MICROLIB
+
+      define-asm:  # Definitionen für den Assembler
+        - __MICROLIB
+
+      misc:
+        - C:  # C-spezifische Compiler-Optionen
+            - -std=c99
+          C-CPP:  # Optionen für C++
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -Wno-packed
+            - -Wno-missing-variable-declarations
+            - -Wno-missing-prototypes
+            - -Wno-missing-noreturn
+            - -Wno-sign-conversion
+            - -Wno-nonportable-include-path
+            - -Wno-reserved-id-macro
+            - -Wno-unused-macros
+            - -Wno-documentation-unknown-command
+            - -Wno-documentation
+            - -Wno-license-management
+            - -Wno-parentheses-equality
+          CPP:  # C++-spezifische Optionen
+            - -xc++
+            - -std=c++11
+          Link:  # Linker-Optionen
+            - --library_type=microlib
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --diag_suppress=L6329
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+
+  linker:
+    - script: Tasch_ITSboard.sct
+
+  groups:
+    # Dokumentationsgruppe
+    - group: Doc
+      files:
+        - file: README.md
+
+    # BSP-Treiber für STM32F4xx Nucleo 144 Board
+    - group: Drivers/BSP/STM32F4xx_Nucleo_144
+      files:
+        - file: ../../stm32cubef4/Drivers/BSP/STM32F4xx_Nucleo_144/stm32f4xx_nucleo_144.c
+
+    # Board-spezifische Treiber
+    - group: Drivers/Board
+      misc:
+        - CPP:  # C++-Optionen für diese Gruppe
+            - -xc++
+      files:
+        - file: ../../ITS_BRD_LIB/Src/startup/system_stm32f4xx.c
+        - file: ../../ITS_BRD_LIB/Src/startup/stm32f4xx_it.c
+        - file: ../../ITS_BRD_LIB/Src/startup/startup_stm32f429xx.s
+
+    # HAL-Treiber für STM32F4xx
+    - group: Drivers/STM32F4xx_HAL_Driver
+      files:
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
+        - file: ../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c
+
+    # Nützliche Zusatzdateien (z.B. Fonts)
+    - group: Utils
+      files:
+        - file: ../../stm32cubef4/Utilities/Fonts/font8.c
+        - file: ../../stm32cubef4/Utilities/Fonts/font12.c
+        - file: ../../stm32cubef4/Utilities/Fonts/font16.c
+        - file: ../../stm32cubef4/Utilities/Fonts/font20.c
+        - file: ../../stm32cubef4/Utilities/Fonts/font24.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/Consolas40.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/Consolas60.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/Consolas80.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/Consolas90.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold40.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold60.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold80.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/ConsolasBold90.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/CourierNew48.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/CourierNewBold40.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/CourierNewBold60.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono40.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono60.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono80.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMono90.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium40.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium60.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium80.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/FiraMonoMedium90.c
+        - file: ../../ITS_BRD_LIB/Utilities/AddFonts/fontsFLASH.c
+
+    # LCD-spezifische Treiber und Dateien
+    - group: LCD
+      files:
+        - file: ../../DisplayWaveshare/Src/LCD_Driver.c
+        - file: ../../DisplayWaveshare/Src/LCD_GUI.c
+        - file: ../../DisplayWaveshare/Src/LCD_Touch.c
+        - file: ../../DisplayWaveshare/Src/LCD_SPI.c
+        - file: ../../DisplayWaveshare/Src/LCD_GPIO.c
+        - file: ../../DisplayWaveshare/Src/LCD_TIM.c
+        - file: ../../DisplayWaveshare/Src/LCD_Tools.c
+        - file: ../../DisplayWaveshare/Src/testsoftware.c
+        - file: ../../DisplayWaveshare/Src/LCD_Debug.c
+        - file: ../../DisplayWaveshare/Src/LCD_Demos.c
+
+    # ITS_BRD_LIB-spezifische Dateien
+    - group: ITS_BRD_LIB
+      files:
+        - file: ../../ITS_BRD_LIB/Src/error.c
+        - file: ../../ITS_BRD_LIB/Src/lcd.c
+        - file: ../../ITS_BRD_LIB/Src/init.c
+        - file: ../../ITS_BRD_LIB/Src/terminal.c
+        - file: ../../ITS_BRD_LIB/Src/keypad.c
+        - file: ../../ITS_BRD_LIB/Src/delay.c
+        - file: ../../ITS_BRD_LIB/Src/timer.c
+        - file: ../../ITS_BRD_LIB/Src/USART_STM32F4xx.c
+        - file: ../../ITS_BRD_LIB/Src/stdinout_USART.c
+
+    # Header-Dateien für das Programm
+    - group: Program/User/Inc
+      files:
+        - file: ../../ITS_BRD_LIB/Inc/lcd.h
+
+
+    # Benutzerdefinierte Programmdateien
+    - group: Program/User/Src
+      files:
+        - file: Src/main.c
+        - file: Src/display.c
+        - file: Src/scanner.c
+        - file: Src/rechnen.c
+        - file: Src/stack.c
+        - file: Src/umwandeln.c
+
+  components:
+    - component: ARM::CMSIS:CORE

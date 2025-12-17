@@ -1,0 +1,6 @@
+{
+    "debug.hideSlowPreLaunchWarning": true,
+    "clangd.arguments": [
+        "--compile-commands-dir=/Users/esmatrabaki/ITS-BRD-VSC/Programs/Tasch/out/Tasch/ITSboard/Debug"
+    ]
+}

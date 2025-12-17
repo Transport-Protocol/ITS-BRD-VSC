@@ -2,33 +2,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "arm-debugger.flash",
-            "serialNumber": "${command:device-manager.getSerialNumber}",
-            "program": "${command:arm-debugger.getApplicationFile}",
-            "cmsisPack": "${command:cmsis-csolution.getTargetPack}",
-            "deviceName": "${command:cmsis-csolution.getDeviceName}",
-            "processorName": "${command:cmsis-csolution.getProcessorName}",
-            "problemMatcher": [],
-            "label": "arm-debugger.flash: Flash Device"
-        },
-        {
-            "type": "virtual-hardware.run",
-            "program": "${command:virtual-hardware.getBinaryFile}",
-            "model": "${command:virtual-hardware.getModel}",
-            "config": "${workspaceFolder}/fvp-config.txt",
-            "args": [
-                "--simlimit",
-                "20"
-            ],
-            "problemMatcher": [],
-            "label": "virtual-hardware.run: Run Program"
-        },
-        {
             "label": "CMSIS Erase",
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Esmatttt"
+                "cwd": "${workspaceFolder}/"
             },
             "windows": {
                 "options": {
@@ -76,7 +54,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Esmatttt"
+                "cwd": "${workspaceFolder}/"
             },
             "windows": {
                 "options": {
@@ -123,7 +101,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Esmatttt"
+                "cwd": "${workspaceFolder}/"
             },
             "windows": {
                 "options": {
@@ -186,7 +164,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Esmatttt"
+                "cwd": "${workspaceFolder}/"
             },
             "windows": {
                 "options": {
