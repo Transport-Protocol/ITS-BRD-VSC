@@ -142,9 +142,50 @@ Das Arm Keil Studio Pack installiert die folgenden empfohlenen Erweiterungen fü
       - Memory Inspector 
       - Peripheral Inspector
 
+# Anleitung zur Installation des C-Pretty-Printer
+Der Pretty-Printer basiert auf dem clang Pretty-Printer. Dieser wird über das Python Script bin/format_all.py gestartet. Das Skript formatiert alle *.c und *.h Dateien des aktuellen CMSIS Projekts.
 
+## Installation der Python-Extension in VSCode
+- Öffnen Sie die Ansicht der VSCode Extension über die Tastenkombination “Ctrl + Shift + X“. Für MAC Systeme ist die Tastenkombination “Cmd + Shift + X“.
+- Suchen Sie die Erweiterung "Python" **(von Microsoft)** und installieren diese - falls noch nicht geschehen.
+- Wählen Sie einen python3 Interpreter wie folgt aus: Über die Tastenkombination “Ctrl + Shift + P“ (bzw. “Cmd + Shift + P“ auf einem MAC Rechner) wird die Auswahl eines Befehls gestartet. Definieren Sie über den Befehl “Python: Select Interpreter“ einen python3 Interpreter.
 
+## Installation der clang Pretty-Printers 
+### MAC
+Führen Sie in der Shell den Befehl 
+<center>brew install clang-format</center>
+aus.
+### Linux
+Führen Sie in der Shell den Befehl 
+<center> sudo apt-get install clang-format </center>
+aus.
+### Windows
+Führen Sie im Terminal den Befehl 
+<center> choco install llvm </center> 
+aus.
 
+## Konfiguration des clang Pretty-Printers 
+Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei Bedarf an Ihre Bedürfnisse an.
+
+## Ausführung des Pretty-Printers
+Sie können die Pretty-Printer auf drei Arten starten:
+1. Führen Sie im Terminal den Befehl 
+     <center> python3 \<Pfad zum VScode Projekt\>/bin/format_all.py \<Pfad zum aktuellen CMSIS Projekt\> </center>
+   aus.
+2. Ausführung der VSCode Task “C-Pretty-Printer“. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie das Programm “Tasks: Run Task“ aus und starten es. Wählen Sie die Ausführung der Task „“C-Pretty-Printer“ aus.
+3. Richten Sie ein Keybinding ein und hängen die Task “C-Pretty-Printer“ an die entsprechende Tastenkombination. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei keybindings.json im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
+   Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie „“Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+   
+   ```
+   [
+	    {   "key": "shift+alt+p",
+	        "command": "workbench.action.tasks.runTask",
+	        "args": "C-Pretty-Printer"
+	    }
+    ]
+    ```
+    Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt gestartet werden.
+   
 # Anleitung zum Auschecken eines GitHub-Projekts in VS Code
 
 Folgen Sie diesen Schritten, um das GitHub-Projekt mit der URL "https://github.com/Transport-Protocol/ITS-BRD-VSC/ITS-BRD-VSC.git" in Visual Studio Code auszuchecken:

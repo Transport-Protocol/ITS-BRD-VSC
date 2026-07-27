@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C-Pretty-Printer",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/bin/format_all.py",
+		     "${command:cmsis-csolution.getSolutionFile}"],
+            "group": "none"
+        }
+    ]
+}

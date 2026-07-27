@@ -158,6 +158,11 @@ function Main {
     # Kopiere den Inhalt des Template-Verzeichnisses ins Zielverzeichnis und ersetze 'template'
     Copy-And-Replace-Recursive -template_path $template_dir -dest_dir $project_dir -project_name $project_name
 
+    # Erstellte .vscode.d Verzeichnis - nicht schoen, aber einfach und robust
+    mkdir "$project_dir\.vscode.d"
+    cp "$template_dir\.vscode.d\tasks.json"  "$project_dir\.vscode.d"
+
+
     Write-Host "Projekt '$project_name' erfolgreich erstellt in '$project_dir'."
 
     # Berechtigungen für das neu erstellte Verzeichnis und dessen Inhalte setzen

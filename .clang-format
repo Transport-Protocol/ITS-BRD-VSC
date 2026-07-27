@@ -1,0 +1,5 @@
+BasedOnStyle: LLVM  # Basis-Style (LLVM, Google, Chromium, Mozilla, WebKit, GNU)
+IndentWidth: 3      # Überschreibt LLVM-Standard (2)
+TabWidth: 3         # Breite eines Tabs (falls UseTab: true)
+UseTab: false       # Leerzeichen statt Tabs
+

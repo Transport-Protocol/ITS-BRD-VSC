@@ -99,8 +99,13 @@ main() {
     # Durchlaufe das Vorlagenverzeichnis und kopiere die Dateien/Verzeichnisse rekursiv
     copy_and_replace_recursive "$template_dir" "$project_dir" "$project_name"
 
+    # Erstellte .vscode.d Verzeichnis - nicht schoen, aber einfach und robust
+    mkdir $project_dir/.vscode.d
+    cp $template_dir/.vscode.d/tasks.json  $project_dir/.vscode.d
+
     echo "Projekt '$project_name' erfolgreich erstellt in '$project_dir'."
 }
 
 # Skript ausführen
 main "$@"
+
