@@ -5,6 +5,8 @@
 /Programs/*/out/
 /Programs/*/tmp/
 /Programs/*/*.cbuild-idx.yml
+/Programs/*/*.cbuild-pack.yml
+
 
 # Ignore User specific setting
 /Programs/*/*.uvguix.*
