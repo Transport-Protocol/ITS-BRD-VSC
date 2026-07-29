@@ -15,6 +15,7 @@
     - [Submodule initieren](#submodule-initieren)
 - [Anleitung zur Verwendung von vcpkg-configuration und Aktivierung der Umgebung](#anleitung-zur-verwendung-von-vcpkg-configuration-und-aktivierung-der-Umgebung)
 - [Building](#building)
+- Installation und Verwendung des C-Pretty-Printers (#Installation-und-Verwendung-des-C-Pretty-Printers)
 - [Keil µVision GUI](#keil-gui)
 
 
@@ -255,12 +256,15 @@ Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die 
 
 ## Ausführung des Pretty-Printers
 Sie können die Pretty-Printer auf drei Arten starten:
-1. Führen Sie im Terminal den Befehl 
-     <center> python3 \<Pfad zum VScode Projekt\>/bin/format_all.py \<Pfad zum aktuellen CMSIS Projekt\> </center>
-   aus.
-2. Ausführung der VSCode Task “C-Pretty-Printer“. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie das Programm “Tasks: Run Task“ aus und starten es. Wählen Sie die Ausführung der Task „“C-Pretty-Printer“ aus.
-3. Richten Sie ein Keybinding ein und hängen die Task “C-Pretty-Printer“ an die entsprechende Tastenkombination. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei keybindings.json im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
-   Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie „“Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+1. Führen Sie im Terminal folgenden Befehl aus:
+   - python3 <Pfad zum VScode Projekt\>/bin/format_all.py <Pfad zum aktuellen CMSIS Projekt\>
+2. Führen Sie die VSCode Task “C-Pretty-Printer“ aus
+   - Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms.
+   - Wählen und starten Sie das Programm “Tasks: Run Task“
+   - Wählen Sie die Ausführung der Task „“C-Pretty-Printer“
+3. Starten Sie den C-Pretty-Printer über ein Keybinding
+		- Einmalig wird die VSCode Task “C-Pretty-Printer“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
+		- Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
    
    ```
    [
@@ -270,7 +274,7 @@ Sie können die Pretty-Printer auf drei Arten starten:
 	    }
     ]
     ```
-    Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt gestartet werden.
+    - Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
 
 # Keil GUI
 
