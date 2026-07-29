@@ -152,17 +152,15 @@ Der Pretty-Printer basiert auf dem clang Pretty-Printer. Dieser wird über das P
 
 ## Installation der clang Pretty-Printers 
 ### MAC
-Führen Sie in der Shell den Befehl 
-<center>brew install clang-format</center>
-aus.
+Führen Sie in der bash Shell folgenden Befehl aus:
+- brew install clang-format
 ### Linux
-Führen Sie in der Shell den Befehl 
-<center> sudo apt-get install clang-format </center>
-aus.
+Führen Sie in der bash Shell folgende Befehle aus:
+- sudo apt update
+- sudo apt install clang-format
 ### Windows
-Führen Sie im Terminal den Befehl 
-<center> choco install llvm </center> 
-aus.
+Führen Sie im Terminal folgenden Befehl aus: 
+- choco install llvm
 
 ## Konfiguration des clang Pretty-Printers 
 Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei Bedarf an Ihre Bedürfnisse an.
