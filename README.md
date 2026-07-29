@@ -255,14 +255,14 @@ Führen Sie im Terminal folgenden Befehl aus:
 Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei Bedarf an Ihre Bedürfnisse an.
 
 ## Ausführung des Pretty-Printers
-Sie können die Pretty-Printer auf drei Arten starten:
-1. Führen Sie im Terminal folgenden Befehl aus:
+Sie können die Pretty-Printer auf drei Arten ausführen.
+1. Im Terminal wird folgender Befehl ausgeführt:
    - python3 <Pfad zum VScode Projekt\>/bin/format_all.py <Pfad zum aktuellen CMSIS Projekt\>
-2. Führen Sie die VSCode Task “C-Pretty-Printer“ aus
+2. Die VSCode Task “C-Pretty-Printer“ wird ausgeführt.
    - Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms.
    - Wählen und starten Sie das Programm “Tasks: Run Task“
-   - Wählen Sie die Ausführung der Task „“C-Pretty-Printer“
-3. Starten Sie den C-Pretty-Printer über ein Keybinding
+   - Wählen Sie die Ausführung der Task “C-Pretty-Printer“
+3. Der C-Pretty-Printer wird ein Keybinding ausgeführt.
 		- Einmalig wird die VSCode Task “C-Pretty-Printer“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
 		- Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
    
