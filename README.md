@@ -129,17 +129,19 @@ Auf der Webseite wird automatisch die passende Version für dein Betriebssystem 
 
 Das Arm Keil Studio Pack installiert die folgenden empfohlenen Erweiterungen für die Embedded- und IoT-Softwareentwicklung auf Arm-basierten Mikrocontroller-Geräten:
 
-- Arm  - Arm CMSIS Debugger
-       - Arm CMSIS Solution: Unterstützung für die Arbeit mit CMSIS-Lösungen (csolution-Projekte)
-       - Arm Debugger
-       - Arm Device Manager: Verwalten von Geräteverbindungen für Arm Cortex-M-basierte Mikrocontroller, Entwicklungsboards und Debug-Probes
-       - Arm Embedded Debugger: Flashen und Debuggen auf Arm Cortex-M-Targets, die das Microsoft Debug Adapter Protocol (DAP) implementieren
-       - Arm Keil Studio Pack (MDK c6)
-       - Arm Remote Build: Durchführen von Remote-Builds von Projekten für Arm Cortex-M-Targets
-       - Arm Virtual Hardware: Verwalten von Arm Virtual Hardware und Ausführen von Embedded-Anwendungen darauf
-       - Arm Tools Environment Manager
-- clangd
-- CDT - CDT GDB Debug Adapter Extension
+- Arm
+     - Arm CMSIS Debugger
+     - Arm CMSIS Solution: Unterstützung für die Arbeit mit CMSIS-Lösungen (csolution-Projekte)
+     - Arm Debugger
+     - Arm Device Manager: Verwalten von Geräteverbindungen für Arm Cortex-M-basierte Mikrocontroller, Entwicklungsboards und Debug-Probes
+     - Arm Embedded Debugger: Flashen und Debuggen auf Arm Cortex-M-Targets, die das Microsoft Debug Adapter Protocol (DAP) implementieren
+     - Arm Keil Studio Pack (MDK c6)
+     - Arm Remote Build: Durchführen von Remote-Builds von Projekten für Arm Cortex-M-Targets
+     - Arm Virtual Hardware: Verwalten von Arm Virtual Hardware und Ausführen von Embedded-Anwendungen darauf
+     - Arm Tools Environment Manager
+- clang
+- CDT
+      - CDT GDB Debug Adapter Extension
       - Memory Inspector 
       - Peripheral Inspector
    
