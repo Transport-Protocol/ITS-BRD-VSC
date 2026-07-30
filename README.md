@@ -141,9 +141,9 @@ Das Arm Keil Studio Pack installiert die folgenden empfohlenen Erweiterungen fü
      - Arm Tools Environment Manager
 - clang
 - CDT
-      - CDT GDB Debug Adapter Extension
-      - Memory Inspector 
-      - Peripheral Inspector
+     - CDT GDB Debug Adapter Extension
+     - Memory Inspector 
+     - Peripheral Inspector
    
 # Anleitung zum Auschecken eines GitHub-Projekts in VS Code
 
