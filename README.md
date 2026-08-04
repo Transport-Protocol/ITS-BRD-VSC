@@ -236,12 +236,25 @@ Nun wird ein neues Projekt erstellt.
 # Installation und Verwendung des C-Pretty-Printers
 Der Pretty-Printer basiert auf dem clang Pretty-Printer. Dieser wird über das Python Script bin/format_all.py gestartet. Das Skript formatiert alle *.c und *.h Dateien des aktuellen CMSIS Projekts.
 
-## Installation der Python-Extension in VSCode
-- Öffnen Sie die Ansicht der VSCode Extension über die Tastenkombination “Ctrl + Shift + X“. Für MAC Systeme ist die Tastenkombination “Cmd + Shift + X“.
-- Suchen Sie die Erweiterung "Python" **(von Microsoft)** und installieren diese - falls noch nicht geschehen.
-- Wählen Sie einen python3 Interpreter wie folgt aus: Über die Tastenkombination “Ctrl + Shift + P“ (bzw. “Cmd + Shift + P“ auf einem MAC Rechner) wird die Auswahl eines Befehls gestartet. Definieren Sie über den Befehl “Python: Select Interpreter“ einen python3 Interpreter.
+## Installation von Python
+Überprüfen Sie, ob eine python3 Version auf Ihrem System installiert ist. Rufen Sie dazu in einer Shell den Befehl 
+- python3 --version 
+auf. Erscheinen keine Versionsinformationen muss python3 auf Ihrem System wie folgt installiert werden.
+### MAC
+Führen Sie in der bash Shell folgenden Befehl aus:
+- brew install python3
+### Linux
+Führen Sie in der bash Shell folgende Befehle aus:
+- sudo apt update
+- sudo apt install python3
+### Windows
+- Öffnen Sie ein Terminal im Admin Modus über einen Rechtsklick auf dem Windows Symbol in der Task-Leiste.
+- Durch Eingabe des Befehls python3 gelangen Sie in den Microsoft-Store zur Installation von python. Führen Sie das Installationsskript aus, indem Sie nach den get-Button den open-Button drücken.
 
 ## Installation der clang Pretty-Printers 
+Überprüfen Sie, ob der clang Pretty-Printer installiert ist. Rufen Sie dazu in einer Shell den Befehl 
+- clang-format --version 
+auf. Erscheinen keine Versionsinformationen muss clang-format auf Ihrem System wie folgt installiert werden.
 ### MAC
 Führen Sie in der bash Shell folgenden Befehl aus:
 - brew install clang-format
@@ -250,8 +263,7 @@ Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
 - sudo apt install clang-format
 ### Windows
-Führen Sie im Terminal folgenden Befehl aus: 
-- choco install llvm
+Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
 
 ## Konfiguration des clang Pretty-Printers 
 Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei Bedarf an Ihre Bedürfnisse an.
