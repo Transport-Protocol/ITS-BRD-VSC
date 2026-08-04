@@ -239,6 +239,7 @@ Der Pretty-Printer basiert auf dem clang Pretty-Printer. Dieser wird über das P
 ## Installation von Python
 Überprüfen Sie, ob eine python3 Version auf Ihrem System installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - python3 --version 
+
 auf. Erscheinen keine Versionsinformationen muss python3 auf Ihrem System wie folgt installiert werden.
 ### MAC
 Führen Sie in der bash Shell folgenden Befehl aus:
