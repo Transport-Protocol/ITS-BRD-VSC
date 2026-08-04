@@ -254,6 +254,7 @@ Führen Sie in der bash Shell folgende Befehle aus:
 ## Installation der clang Pretty-Printers 
 Überprüfen Sie, ob der clang Pretty-Printer installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - clang-format --version 
+
 auf. Erscheinen keine Versionsinformationen muss clang-format auf Ihrem System wie folgt installiert werden.
 ### MAC
 Führen Sie in der bash Shell folgenden Befehl aus:
