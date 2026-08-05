@@ -8,6 +8,15 @@
             "args": ["${workspaceFolder}/bin/format_all.py",
 		     "${command:cmsis-csolution.getSolutionFile}"],
             "group": "none"
+        },
+        {
+            "label": "C-Linter",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/bin/lint_all.py",
+                "${command:cmsis-csolution.getSolutionFile}" ],
+            "group": "none"
         }
     ]
 }

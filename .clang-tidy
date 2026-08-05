@@ -1,0 +1,14 @@
+# Deaktiviere all checks 
+# Aktiviert anschließend C relevante checks.
+
+Checks: >
+  -*,
+  bugprone-*,
+  clang-analyzer-*,
+  readability-*,
+  misc-*
+
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle: none
+

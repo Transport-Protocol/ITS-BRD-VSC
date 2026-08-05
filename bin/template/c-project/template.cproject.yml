@@ -84,6 +84,10 @@ project:
       files:
         - file: README.md
 
+    - group: Linter
+      files:
+        - file: clang_tidy_result.txt
+
     # BSP-Treiber für STM32F4xx Nucleo 144 Board
     - group: Drivers/BSP/STM32F4xx_Nucleo_144
       files:

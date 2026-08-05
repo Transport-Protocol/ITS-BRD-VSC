@@ -292,6 +292,69 @@ Sie können die Pretty-Printer auf drei Arten ausführen.
     ```
    - Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
 
+# Installation und Verwendung des C-Linters von clang
+Der C Coding-Style-Checker basiert auf clang-tidy, dem C linter von clang. Dieser wird über das Python Script bin/lint_all.py gestartet. Das Skript wendet clang-tidy auf alle *.c und *.h Dateien des aktuellen CMSIS Projekts an.
+## Installation von python3
+Das vorherige Kapitel geht auf die Installation von python3 ein. Das python Modul pyyaml muss noch installiert werden.
+### MAC
+Führen Sie in der bash Shell folgenden Befehl aus:
+- pip3 install pyyaml
+### Linux
+ÜBERARBEITEN
+Führen Sie in der bash Shell folgende Befehle aus:
+- sudo apt update
+- sudo apt install clang-format
+### Windows
+ÜBERARBEITEN
+Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
+
+
+
+
+## Installation der clang-tidy
+Überprüfen Sie, ob der Linter von clang installiert ist. Rufen Sie dazu in einer Shell den Befehl 
+- clang-tidy --version 
+
+auf. Erscheinen keine Versionsinformationen muss clang-format auf Ihrem System wie folgt installiert werden.
+### MAC
+Clang-tidy sollte schon installiert sein. Wenn nicht, führen Sie in der Shell folgenden Befehl aus:
+- brew install llvm
+
+
+### Linux
+ÜBERABEITEN
+Führen Sie in der bash Shell folgende Befehle aus:
+- sudo apt update
+- sudo apt install clang-format
+### Windows
+ÜBERARBEITEN
+Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
+
+
+## Ausführung des C-Linters
+Sie können die C-Linter auf drei Arten ausführen.
+1. Im Terminal wird folgender Befehl ausgeführt:
+   - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum aktuellen CMSIS Projekt\>
+2. Die VSCode Task “C-Linter“ wird ausgeführt.
+   - Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms.
+   - Wählen und starten Sie das Programm “Tasks: Run Task“
+   - Wählen Sie die Ausführung der Task “C-Linter“
+3. Der C-Linter wird über ein Keybinding ausgeführt.
+	 - Einmalig wird die VSCode Task “C-Linter“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
+	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+   
+   ```
+   [
+	    {   "key": "shift+alt+l",
+	        "command": "workbench.action.tasks.runTask",
+	        "args": "C-Linter"
+	    }
+    ]
+    ```
+   - Nun kann über “Shift+Alt+L“ der C-Linter für das aktuelle CMSIS Projekt ausgeführt werden.
+
+
+
 # Keil GUI
 
 #### Preparation
