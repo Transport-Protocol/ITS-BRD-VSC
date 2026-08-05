@@ -8,50 +8,8 @@ import os
 import sys
 import yaml
 import subprocess
-import atexit
-from typing import Optional
+from logger import logger
 from typing import Optional, List, TextIO
-
-
-class Logger:
-    """ 
-    Schreibt auf stdout und in dynamisch hinzugefügte Dateien.
-    """
-
-    def __init__(self):
-        self.targets: List[TextIO] = [sys.stdout]
-        atexit.register(self.close)  # Registriert close() für das Programmende
-
-    def add_file(self, file_path: str) -> None:
-        try:
-            file = open(file_path, "w")
-            self.targets.append(file)
-        except IOError as e:
-            print(f"Fehler beim Öffnen der Datei: {e}", file=sys.stderr)
-
-    def log(self, message: str) -> None:
-        # Ersetze literale \n durch echte Zeilenumbrüche
-        message = message.replace("\\n", "\n")
-        # Füge einen Zeilenumbruch hinzu, falls nicht vorhanden
-        if not message.endswith("\n"):
-            message += "\n"
-        for target in self.targets:
-            print(message, file=target, end="", flush=True)
-
-    def close(self) -> None:
-        for target in self.targets:
-            if target != sys.stdout:
-                try:
-                    target.close()
-                except Exception as e:
-                    print(f"Fehler beim Schließen der Datei: {e}", file=sys.stderr)
-        self.targets = [sys.stdout]
-
-# Instanziere Logger als globale Variablen, auch wenn explizite 
-# Übergabe oder ein Singleton schöner sind :). Reicht 
-logger = Logger()
-logger.log("Hallo, Welt!")
-
 
 def exit_on_error(s) -> None :
     txt = f"❌ Error: {s}"
@@ -85,20 +43,26 @@ def extract_target_build_type(file_path):
         with open(file_path, 'r') as file:
             data = yaml.safe_load(file)
 
-        proj_contexts = []
+        # Bestimmung des default Build Type, was der erste Eintrag unter build-types ITSboard
+        build_type = data.get("solution").get("build-types")[0].get("type")
+   
+        # Überschreibe ggf. default Build Type durch project-context Einstellung
+        proj_context_list = []
+        for target_type in data.get("solution").get("target-types"):
+            if "target-set" in target_type:
+                for target in target_type.get("target-set"):
+                    if "images" in target:
+                        for image in target.get("images"):
+                            proj_context_list.append(image.get("project-context"))
 
-        # Durchsuche die Struktur nach "target-set" -> "set" -> "images"
-        # Zuerst zwei dictionaries; exceptions erkennen Fehlerfall
-        data = data.get("solution").get("target-types")
-        for target_type in data:
-            for target in target_type.get("target-set"):
-                for image in target.get("images"):
-                    proj_contexts.append(image.get("project-context"))
-        assert len(proj_contexts) == 1 # nur ein project-context erwartet
-        assert '.' in proj_contexts[0] # project-context endet mit Build Type
-        # Extrahiere den Teilstring, der den Build Typ festlegt
-        erg = proj_contexts[0].split(".")[-1]
-        return erg
+        assert len(proj_context_list) <= 1 # nur ein project-context erwartet
+        if len(proj_context_list) == 1:
+            assert '.' in proj_context_list[0] # project-context endet mit Build Type
+            # Extrahiere den Teilstring, der den Build Typ festlegt
+            build_type = proj_context_list[0].split(".")[-1]
+
+        return build_type
+
     except FileNotFoundError:
         exit_on_error(f"File '{file_path}' not found.")
     except yaml.YAMLError as e:
@@ -127,7 +91,6 @@ def apply_clang_tidy(cmsis_comp_cmds_dir: str, dir: str, extension: str) -> None
     for file_path in matching_files:
         try:
             logger.log(f"Linting {file_path}.")
-            logger.log(os.getcwd())
             result = subprocess.run(
                 ["clang-tidy", "-p", cmsis_comp_cmds_dir, file_path],
                 stdout=subprocess.PIPE,
