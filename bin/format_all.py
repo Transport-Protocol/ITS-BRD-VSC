@@ -16,8 +16,8 @@ def exit_on_error(s) -> None :
 def assert_is_directory(path: str) -> None:
     """
     Checks if the given path is a directory.
-    Raises a FileNotFoundError if the path does not exist.
-    Raises a NotADirectoryError if the path is not a directory.
+    If the path does not exist. or the path is not
+    a directory, the program finishs with an error message.
     Args:
         path (str): The path to check.
     """
