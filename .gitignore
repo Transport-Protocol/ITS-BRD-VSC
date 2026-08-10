@@ -6,6 +6,7 @@
 /Programs/*/tmp/
 /Programs/*/*.cbuild-idx.yml
 /Programs/*/*.cbuild-pack.yml
+/Programs/**/.clangd
 __pycache__/
 
 # Ignore User specific setting
