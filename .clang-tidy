@@ -3,12 +3,13 @@
 
 Checks: >
   -*,
+  readability-*,
   bugprone-*,
   clang-analyzer-*,
-  readability-*,
-  misc-*
+  misc-*,
+  -readability-identifier-naming,
+  -bugprone-reserved-identifier
 
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
 FormatStyle: none
-

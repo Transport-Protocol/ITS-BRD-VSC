@@ -90,7 +90,7 @@ def apply_clang_tidy(cmsis_comp_cmds_dir: str, dir: str, extension: str) -> None
     # Apply clang-tidy to each file
     for file_path in matching_files:
         try:
-            logger.log(f"Linting {file_path}.")
+            # logger.log(f"Linting {file_path}.")
             result = subprocess.run(
                 ["clang-tidy", "-p", cmsis_comp_cmds_dir, file_path],
                 stdout=subprocess.PIPE,
@@ -98,9 +98,11 @@ def apply_clang_tidy(cmsis_comp_cmds_dir: str, dir: str, extension: str) -> None
                 universal_newlines=True,
                 check=True
             )
-            logger.log(result.stdout)
-            logger.log(result.stderr)
-            logger.log("\n")
+            if len(result.stdout) != 0 and not result.stdout.isspace():
+                logger.log(result.stdout)
+                logger.log("\n")
+            # logger.log(result.stderr)
+        
         except subprocess.CalledProcessError as e:
             exit_on_error(f"Failed to lint {file_path}: {e.stderr.decode('utf-8')}")
 

@@ -122,6 +122,8 @@
   "debug.hideSlowPreLaunchWarning": true,
   "debug.showInStatusBar": "never",
   "files.associations": {
-    "*.s": "arm-debugger.arm"
+    "*.s": "arm-debugger.arm",
+    "*.c": "c",
+    "*.h": "c"
   }
 }
