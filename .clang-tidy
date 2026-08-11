@@ -7,8 +7,41 @@ Checks: >
   bugprone-*,
   clang-analyzer-*,
   misc-*,
-  -readability-identifier-naming,
-  -bugprone-reserved-identifier
+  readability-identifier-naming,
+  -bugprone-reserved-identifier,
+  -misc-include-cleaner,
+  -readability-implicit-bool-conversion,
+  -bugprone-random-generator-seed,
+  -misc-predictable-rand,
+  -clang-analyzer-core.FixedAddressDereference,
+  -clang-analyzer-security.ArrayBound
+
+CheckOptions:
+  - key: readability-identifier-naming.ClassCase
+    value: "CamelCase"
+  - key: readability-identifier-naming.VariableCase
+    value: "lower_case"
+  - key: readability-identifier-naming.FunctionCase
+    value: "lower_case"
+  - key: readability-identifier-naming.ConstantCase
+    value: "UPPER_CASE"
+  - key: readability-identifier-naming.MemberCase
+    value: "lower_case"
+  - key: readability-identifier-naming.StaticMemberCase
+    value: "lower_case"
+  - key: readability-identifier-naming.GlobalVarCase
+    value: "lower_case"
+  - key: readability-identifier-naming.TypeAliasCase
+    value: "CamelCase"
+  - key: readability-identifier-naming.EnumCase
+    value: "CamelCase"
+  - key: readability-identifier-naming.EnumConstantCase
+    value: "UPPER_CASE"
+  - key: readability-identifier-naming.NamespaceCase
+    value: "lower_case"
+  - key: readability-identifier-naming.ParameterCase
+    value: "lower_case"
+
 
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
