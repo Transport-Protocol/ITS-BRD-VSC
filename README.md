@@ -293,7 +293,7 @@ Sie können die Pretty-Printer auf drei Arten ausführen.
    - Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
 
 # Installation und Verwendung des C-Linters von clang
-Der C-Coding-Style-Checker basiert auf clang-tidy, dem C linter von clang. \
+Der C-Coding-Style-Checker basiert auf clang-tidy, dem C-Linter von clang. \
 In dieser VSCode Konfiguration wird der Language Server clangd eingesetzt. Ein Language Server unterstützt typische Editor Funktionen wie Code-Vervollständigung, das Finden von Definitionen und Echtzeit-Fehleranalysen. clangd unterstützt auch die Warnung des C-Linters clang-tidy. Aus Performance-Gründen ist clang-tidy direkt in clangd integriert - clangd verwendet entsprechende Bibliotheken von clang-tidy.
 
 ## Konfiguration des Linters clang-tidy
@@ -303,9 +303,9 @@ clang-tidy wird über die Datei .clang-tidy, die in obersten Verzeichnis von die
 Für die im Texteditor geöffneten Dateien gibt die clang-tidy Version, die in clangd integriert ist, die Warnungen im Problem Window aus. 
 
 ## Nutzung einer eigenständigen clang-tidy Version
-Unabhängig von der in clangd integrierten clang-tidy Version können Sie eine eigenständige Instanz in clang-tidy verwenden. Da die eigenständige clang-tidy Version nicht mit clangd gekoppelt ist, erscheinen ihre Ausgaben nicht im Problem-Window erscheinen. \
+Unabhängig von der in clangd integrierten clang-tidy Version können Sie eine eigenständige Instanz in clang-tidy verwenden. Da die eigenständige clang-tidy Version nicht mit clangd gekoppelt ist, erscheinen ihre Ausgaben nicht im Problem-Window. \
 Das Script lint_all.py überprüft alle Src/*.c und Inc/*.h Dateien des aktuellen CMSIS Projekts und speichert die Warnungen in der Datei lang_tidy_result.txt ab, die im obersten Verzeichnis des aktuellen CMSIS Projekts liegt. Diese Datei können Sie über den VSCode Explorer finden - im CMSIS View werden “*.txt“ Dateien in der Regel nicht angezeigt.\
-Die Verwendung der externen Version von clang-tidy ist sinnvoll, wenn sie alle *.c und *.h Dateien des aktuellen CMSIS Projekts mit einem Klick überprüfen wollen - was typischer Weise in der Endphase eines Entwicklungsschritts hilfreich ist.\
+Die Verwendung der externen Version von clang-tidy ist hilfreich, wenn sie alle *.c und *.h Dateien des aktuellen CMSIS Projekts mit einem Klick überprüfen wollen - eine typische Aktivität in der Endphase eines Entwicklungsschritts.\
 Bitte beachten Sie, dass sich die in clangd integrierte Version von clang-tidy und die externe Version von clang-tidy an wenigen Stellen unterscheiden, was manchmal zu unterschiedlichen Warnungen führt.
 ### Installation von python3
 Da die externe clang-tidy Version über ein Python Skript aufgerufen wird, muss zuerst Python3 installiert werden. Das vorherige Kapitel geht auf die Installation von python3 ein. 

@@ -114,3 +114,10 @@ Eine Lösung, die oft funktioniert:
 - Man setzt einen Breakpoint bei dem BL Befehl, der in die Assembler Prozedur springt. Über den Debugger Befehl stepi (Kurzform si) führt der Debugger genau eine Instruktion aus (daher das i wie Instruktion :)) - also den BL Befehl. Dann hält der Debugger am ersten Befehl der Assembler Prozedur an.
   Leider gibt es für den Befehl si keinen Button im Debugger View. Daher muss man in der Konsole des Debugger den Befehl „> si“ eingeben (Das „>“ ist wichtig, siehe Kommentar oben)
 - Anmerkung: Man könnten auf lange Sicht den armasm durch den gas Assembler ersetzen. Dann kann man mit .loc und .file Assembler Direktiven für den Debugger einfügen.
+### Probleme mit clang-tidy
+- clangd unterstützt auch clang-tidy. Dazu wird eine entsprechende Bibliothek mit clang-tidy Funktionen angebunden. Lint-all.py verwendet eine eigenständige clang-tidy Version. Die Anzahl der Warnungen der clangd internen clang-tidy Version und der eigenständigen clang-tidy Version unterscheiden sich manchmal. 
+- Manchmal ist es sinnvoll, dass der Language Server clangd neu gestartet wird und seinen Meldungen in Output Fenster unter clangd angeschaut werden. Ein Update des CMSIS Projekts ist oftmals nicht sinnvoll, da CMSIS die Datei settings.json überschreibt und dann auch Argumente, die zum Test bei Aufruf von clangd genutzt werden, überschriebt.
+- clangd wird wie folgt neu gestartet: Shift-Cltl-P (bzw. Shift-Cmd-P auf MAC) und dann den Befehl „“clangd: Restart language server“ ausführen. Oftmals ist es hilfreich, wenn man vorab den Output von clangd löschen. Weiterhin ist es hilfreich wenn in settings.json das folgende eingefügt wird: "clangd.arguments": ["--clang-tidy","--log=verbose“] 
+- 
+
+
