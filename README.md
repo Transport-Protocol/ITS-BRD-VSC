@@ -293,46 +293,55 @@ Sie können die Pretty-Printer auf drei Arten ausführen.
    - Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
 
 # Installation und Verwendung des C-Linters von clang
-Der C Coding-Style-Checker basiert auf clang-tidy, dem C linter von clang. Dieser wird über das Python Script bin/lint_all.py gestartet. Das Skript wendet clang-tidy auf alle *.c und *.h Dateien des aktuellen CMSIS Projekts an.
-## Installation von python3
-Das vorherige Kapitel geht auf die Installation von python3 ein. Das python Modul pyyaml muss noch installiert werden.
-### MAC
+Der C-Coding-Style-Checker basiert auf clang-tidy, dem C linter von clang. \
+In dieser VSCode Konfiguration wird der Language Server clangd eingesetzt. Ein Language Server unterstützt typische Editor Funktionen wie Code-Vervollständigung, das Finden von Definitionen und Echtzeit-Fehleranalysen. clangd unterstützt auch die Warnung des C-Linters clang-tidy. Aus Performance-Gründen ist clang-tidy direkt in clangd integriert - clangd verwendet entsprechende Bibliotheken von clang-tidy.
+
+## Konfiguration des Linters clang-tidy
+clang-tidy wird über die Datei .clang-tidy, die in obersten Verzeichnis von diesem Repo liegt, konfiguriert. Bei Bedarf können Sie .clang-tidy sinnvoll anpassen, zum Beispiel bei den Konventionen für Bezeichner. Wobei das Ausschalten von clang-tidy Checks nur in Ausnahmefällen sinnvoll ist. 
+
+## Ausgabe der Warnungen von clang-tidy
+Für die im Texteditor geöffneten Dateien gibt die clang-tidy Version, die in clangd integriert ist, die Warnungen im Problem Window aus. 
+
+## Nutzung einer eigenständigen clang-tidy Version
+Unabhängig von der in clangd integrierten clang-tidy Version können Sie eine eigenständige Instanz in clang-tidy verwenden. Da die eigenständige clang-tidy Version nicht mit clangd gekoppelt ist, erscheinen ihre Ausgaben nicht im Problem-Window erscheinen. \
+Das Script lint_all.py überprüft alle Src/*.c und Inc/*.h Dateien des aktuellen CMSIS Projekts und speichert die Warnungen in der Datei lang_tidy_result.txt ab, die im obersten Verzeichnis des aktuellen CMSIS Projekts liegt. Diese Datei können Sie über den VSCode Explorer finden - im CMSIS View werden “*.txt“ Dateien in der Regel nicht angezeigt.\
+Die Verwendung der externen Version von clang-tidy ist sinnvoll, wenn sie alle *.c und *.h Dateien des aktuellen CMSIS Projekts mit einem Klick überprüfen wollen - was typischer Weise in der Endphase eines Entwicklungsschritts hilfreich ist.\
+Bitte beachten Sie, dass sich die in clangd integrierte Version von clang-tidy und die externe Version von clang-tidy an wenigen Stellen unterscheiden, was manchmal zu unterschiedlichen Warnungen führt.
+### Installation von python3
+Da die externe clang-tidy Version über ein Python Skript aufgerufen wird, muss zuerst Python3 installiert werden. Das vorherige Kapitel geht auf die Installation von python3 ein. 
+#### Installation des Moduls pyyaml
+Weiterhin muss das das Python Modul pyyaml installiert werden.
+##### MAC
 Führen Sie in der bash Shell folgenden Befehl aus:
 - pip3 install pyyaml
-### Linux
+##### Linux
 ÜBERARBEITEN
 Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
 - sudo apt install clang-format
-### Windows
+##### Windows
 ÜBERARBEITEN
 Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
-
-
-
-
-## Installation der clang-tidy
-Überprüfen Sie, ob der Linter von clang installiert ist. Rufen Sie dazu in einer Shell den Befehl 
+### Installation der clang-tidy
+Überprüfen Sie, ob clang-tidy schon installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - clang-tidy --version 
 
-auf. Erscheinen keine Versionsinformationen muss clang-format auf Ihrem System wie folgt installiert werden.
-### MAC
-Clang-tidy sollte schon installiert sein. Wenn nicht, führen Sie in der Shell folgenden Befehl aus:
+auf. Erscheinen keine Versionsinformationen muss clang-tidy auf Ihrem System wie folgt installiert werden.
+#### MAC
+Führen Sie in der Shell folgenden Befehl aus:
 - brew install llvm
-
-
-### Linux
+#### Linux
 ÜBERABEITEN
 Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
 - sudo apt install clang-format
-### Windows
+#### Windows
 ÜBERARBEITEN
 Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
 
 
-## Ausführung des C-Linters
-Sie können die C-Linter auf drei Arten ausführen.
+### Ausführung des externen clang-tidy Version
+Sie können die externe clang-tidy Version auf drei Arten ausführen.
 1. Im Terminal wird folgender Befehl ausgeführt:
    - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum aktuellen CMSIS Projekt\>
 2. Die VSCode Task “C-Linter“ wird ausgeführt.
