@@ -161,7 +161,6 @@ function Main {
     # Erstellte .vscode.d Verzeichnis - nicht schoen, aber einfach und robust
     mkdir "$project_dir\.vscode.d"
     cp "$template_dir\.vscode.d\tasks.json"  "$project_dir\.vscode.d"
-    cp "$template_dir\clang_tidy_result.txt" "$project_dir"
 
     Write-Host "Projekt '$project_name' erfolgreich erstellt in '$project_dir'."
 
