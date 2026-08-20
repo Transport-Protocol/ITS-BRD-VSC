@@ -104,7 +104,7 @@ def apply_clang_tidy(cmsis_comp_cmds_dir: str, dir: str, extension: str) -> None
             # logger.log(result.stderr)
         
         except subprocess.CalledProcessError as e:
-            exit_on_error(f"Failed to lint {file_path}: {e.stderr.decode('utf-8')}")
+            exit_on_error(f"Failed to lint {file_path}: {e.stderr.encode('utf-8')}")
 
 if __name__ == "__main__":
     # Check first parameter
