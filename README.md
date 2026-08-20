@@ -291,12 +291,12 @@ Sie können die Pretty-Printer auf drei Arten ausführen.
 1. Im Terminal wird folgender Befehl ausgeführt:
    - python3 <Pfad zum VScode Projekt\>/bin/format_all.py <Pfad zum aktuellen CMSIS-Projekt\>
 2. Die VSCode Task “C-Pretty-Printer“ wird ausgeführt.
-   - Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
+   - Starten Sie über “Ctrl+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
    - Wählen und starten Sie das Programm “Tasks: Run Task“
    - Wählen Sie die Ausführung der Task “C-Pretty-Printer“
 3. Der C-Pretty-Printer wird über ein Keybinding ausgeführt.
 	 - Einmalig wird die VSCode Task “C-Pretty-Printer“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
-	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
    
    ```
    [
@@ -331,13 +331,12 @@ Weiterhin muss das das Python Modul pyyaml installiert werden.
 Führen Sie in der bash Shell folgenden Befehl aus:
 - pip3 install pyyaml
 ##### Linux
-ÜBERARBEITEN
-Führen Sie in der bash Shell folgende Befehle aus:
+Führen Sie in der bash Shell folgenden Befehl aus:
 - sudo apt update
-- sudo apt install clang-format
+- sudo apt install python3-yaml
 ##### Windows
 ÜBERARBEITEN
-Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
+
 ### Installation von clang-tidy
 Überprüfen Sie, ob clang-tidy schon installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - clang-tidy --version 
@@ -352,20 +351,22 @@ Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt install clang-tidy
 #### Windows
 ÜBERARBEITEN
-Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
+
+
+
 
 
 ### Ausführung des externen clang-tidy Version
 Sie können die externe clang-tidy Version auf drei Arten ausführen.
 1. Im Terminal wird folgender Befehl ausgeführt:
-   - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum aktuellen CMSIS-Projekt\>
+   - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum *.csolution.yml des aktuellen CMSIS-Projekt\>
 2. Die VSCode Task “C-Linter“ wird ausgeführt.
-   - Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
+   - Starten Sie über “Ctrl+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
    - Wählen und starten Sie das Programm “Tasks: Run Task“
    - Wählen Sie die Ausführung der Task “C-Linter“
 3. Der C-Linter wird über ein Keybinding ausgeführt.
 	 - Einmalig wird die VSCode Task “C-Linter“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
-	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
    
    ```
    [
