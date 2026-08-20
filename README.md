@@ -16,6 +16,7 @@
 - [Anleitung zur Verwendung von vcpkg-configuration und Aktivierung der Umgebung](#anleitung-zur-verwendung-von-vcpkg-configuration-und-aktivierung-der-Umgebung)
 - [Building](#building)
 - [Installation und Verwendung des C-Pretty-Printers](#Installation-und-Verwendung-des-C-Pretty-Printers)
+- [Installation und Verwendung des C-Linters von clang] (#Installation-und-Verwendung-des-C-Linters-von-clang)
 - [Keil µVision GUI](#keil-gui)
 
 
@@ -193,8 +194,8 @@ Wenn Sie in Zukunft die Submodule erneut aktualisieren möchten, führen Sie ein
 
 # Ein Projekt wählen, builden und auf das Board übertragen
 
-1. Um zu testen, ob alles richtig installiert ist, soll das Projekt "TestNewFont" genutzt werden. Dazu klicken Sie in der Aktivierungsleiste (linke Seite) auf das CMSIS Symbol. 
-2. In dem sich öffnenden CMSIS Fenster wird oben, über die "..." -> "Select active Solution from Workspace" und dann `Programs/TestNewFonts/TestNewFonts` gewählt.
+1. Um zu testen, ob alles richtig installiert ist, soll das Projekt "TestNewFont" genutzt werden. Dazu klicken Sie in der Aktivierungsleiste (linke Seite) auf das CMSIS-Symbol. 
+2. In dem sich öffnenden CMSIS-Fenster wird oben, über die "..." -> "Select active Solution from Workspace" und dann `Programs/TestNewFonts/TestNewFonts` gewählt.
 3. Anschließend über das gleiche Menue  "..." ->Refresh (reload packs, update RTE)
 4. Klicken Sie nun auf das Explorer Symbol (oben links) 
 5. Öffnen Sie das Kontextmenü (rechte Maustaste) von der Datei vcpkg-configuration.json. Wählen Sie zuerst "Update Tool registry" und anschließend "Reactivate Environment" (Das kaann eine gewisse Zeit dauern)
@@ -204,8 +205,8 @@ Sie werden aufgefordert, eine MDK Community-Lizenz für die nicht-kommerzielle N
 # Building
 
 1. Klicken Sie auf das CMSIS-Symbol
-2. Klicken Sie in dem CMSIS Menü auf den Hammer ("Build Solution") Das Projekt sollte nun ohne Fehler gebaut werden.
-3. Klicken Sie in dem CMSIS Menü auf das Pfeil (Load & Run) um das Projekt auf das Board zu übertragen und dort laufen zu lassen, oder auf den Käfer (Load & Debug) , um das Projekt auf das Board zu übertragen und dort das Programm im Einzelschritt Modus laufen zu lassen. 
+2. Klicken Sie in dem CMSIS-Menü auf den Hammer ("Build Solution") Das Projekt sollte nun ohne Fehler gebaut werden.
+3. Klicken Sie in dem CMSIS-Menü auf das Pfeil (Load & Run) um das Projekt auf das Board zu übertragen und dort laufen zu lassen, oder auf den Käfer (Load & Debug) , um das Projekt auf das Board zu übertragen und dort das Programm im Einzelschritt Modus laufen zu lassen. 
 
 # Neues Projekt erstellen
 
@@ -218,7 +219,7 @@ Sie werden aufgefordert ein Projekt Name einzugeben. Der Name muss mit einem Gro
 Nun wird ein neues Projekt erstellt.
 
 4. Klicken Sie auf CMSIS 
-5. In dem sich öffnenden CMSIS Fenster wird oben, über die "..." -> "Select active Solution from Workspace" und dann `Programs/<Name des Projekt>/<Name des Projekt>` gewählt.
+5. In dem sich öffnenden CMSIS-Fenster wird oben, über die "..." -> "Select active Solution from Workspace" und dann `Programs/<Name des Projekt>/<Name des Projekt>` gewählt.
 6. Anschließend über das gleiche Menue  "..." ->Refresh (reload packs, update RTE)
 7. Klicken Sie nun auf das Explorer Symbol (oben links) 
 8. Öffnen Sie das Kontextmenü (rechte Maustaste) von der Datei vcpkg-configuration.json. Wählen Sie zuerst "Update Tool registry" und anschließend "Reactivate Environment" 
@@ -298,7 +299,7 @@ Sie können die Pretty-Printer auf drei Arten ausführen.
 	    }
     ]
     ```
-   - Nun kann über “Alt+Shift+P“ (bzw. “Opt+Shift+P“ auf einem MAC System) der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
+   - Nun kann über “Alt+Shift+P“ (bzw. “Opt+Shift+P“ auf einem MAC System) der C-Pretty-Printer für das aktuelle CMSIS-Projekt ausgeführt werden.
 
 # Installation und Verwendung des C-Linters von clang
 Der C-Coding-Style-Checker basiert auf clang-tidy, dem C-Linter von clang. \
@@ -312,8 +313,8 @@ Für die im Texteditor geöffneten Dateien gibt die clang-tidy Version, die in c
 
 ## Nutzung einer eigenständigen clang-tidy Version
 Unabhängig von der in clangd integrierten clang-tidy Version können Sie eine eigenständige Instanz in clang-tidy verwenden. Da die eigenständige clang-tidy Version nicht mit clangd gekoppelt ist, erscheinen ihre Ausgaben nicht im Problem-Window. \
-Das Script lint_all.py überprüft alle Src/*.c und Inc/*.h Dateien des aktuellen CMSIS Projekts und speichert die Warnungen in der Datei lang_tidy_result.txt ab, die im obersten Verzeichnis des aktuellen CMSIS Projekts liegt. Diese Datei können Sie über den VSCode Explorer finden - im CMSIS View werden “*.txt“ Dateien in der Regel nicht angezeigt.\
-Die Verwendung der externen Version von clang-tidy ist hilfreich, wenn sie alle *.c und *.h Dateien des aktuellen CMSIS Projekts mit einem Klick überprüfen wollen - eine typische Aktivität in der Endphase eines Entwicklungsschritts.\
+Das Script lint_all.py überprüft alle Src/*.c und Inc/*.h Dateien des aktuellen CMSIS-Projekts und speichert die Warnungen in der Datei lang_tidy_result.txt ab, die im obersten Verzeichnis des aktuellen CMSIS-Projekts liegt. Diese Datei können Sie über den VSCode Explorer finden - im CMSIS-View werden “*.txt“ Dateien in der Regel nicht angezeigt.\
+Die Verwendung der externen Version von clang-tidy ist hilfreich, wenn sie alle *.c und *.h Dateien des aktuellen CMSIS-Projekts mit einem Klick überprüfen wollen - eine typische Aktivität in der Endphase eines Entwicklungsschritts.\
 Bitte beachten Sie, dass sich die in clangd integrierte Version von clang-tidy und die externe Version von clang-tidy an wenigen Stellen unterscheiden, was manchmal zu unterschiedlichen Warnungen führt.
 ### Installation von python3
 Da die externe clang-tidy Version über ein Python Skript aufgerufen wird, muss zuerst Python3 installiert werden. Das vorherige Kapitel geht auf die Installation von python3 ein. 
@@ -351,7 +352,7 @@ Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
 ### Ausführung des externen clang-tidy Version
 Sie können die externe clang-tidy Version auf drei Arten ausführen.
 1. Im Terminal wird folgender Befehl ausgeführt:
-   - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum aktuellen CMSIS Projekt\>
+   - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum aktuellen CMSIS-Projekt\>
 2. Die VSCode Task “C-Linter“ wird ausgeführt.
    - Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
    - Wählen und starten Sie das Programm “Tasks: Run Task“
@@ -368,7 +369,7 @@ Sie können die externe clang-tidy Version auf drei Arten ausführen.
 	    }
     ]
     ```
-   - Nun kann über “Alt+Shift+L“ (bzw. “Opt+Shift+L“ auf einem MAC System) der C-Linter für das aktuelle CMSIS Projekt ausgeführt werden.
+   - Nun kann über “Alt+Shift+L“ (bzw. “Opt+Shift+L“ auf einem MAC System) der C-Linter für das aktuelle CMSIS-Projekt ausgeführt werden.
 
 
 # Keil GUI
