@@ -16,7 +16,7 @@
 - [Anleitung zur Verwendung von vcpkg-configuration und Aktivierung der Umgebung](#anleitung-zur-verwendung-von-vcpkg-configuration-und-aktivierung-der-Umgebung)
 - [Building](#building)
 - [Installation und Verwendung des C-Pretty-Printers](#Installation-und-Verwendung-des-C-Pretty-Printers)
-- [Installation und Verwendung des C-Linters von clang] (#Installation-und-Verwendung-des-C-Linters-von-clang)
+- [Installation und Verwendung des C-Linters von clang](#Installation-und-Verwendung-des-C-Linters-von-clang)
 - [Keil µVision GUI](#keil-gui)
 
 
