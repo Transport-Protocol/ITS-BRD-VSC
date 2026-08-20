@@ -241,7 +241,14 @@ Der Pretty-Printer basiert auf dem clang Pretty-Printer clang-format. In dieser 
 Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei ggf. an Ihre Bedürfnisse an.
 
 ## Aufruf des Pretty-Printers für eine Datei im Text-Editor
-Bearbeiten Sie eine C-Datei im Text-Editor, wird der Pretty-Printer für diese Datei über das Keybinding “Alt+Shift+F“ (bzw. “Opt+Shift+F“ auf dem Mac) ausgeführt.
+Bearbeiten Sie eine C-Datei im Text-Editor, wird der Pretty-Printer für diese Datei über ein Keybinding aufgerufen.
+### Windows
+ “Alt+Shift+F“
+### Linux (Ubuntu)
+“Ctrl+Shift+I“ 
+### MAC
+“Opt+Shift+F“ 
+
 
 ## Aufruf des Pretty-Printers für alle Dateien des CMSIS-Projekts
  Das Python Script bin/format_all.py ruft den Pretty-Printer für alle *.c und *.h Dateien des aktuellen CMSIS-Projekts auf. Da in diesem Fall der eigenständige Pretty-Printer clang-format Eingesetz wird, muss sowohl dieser wie auch Python3 installiert werden.
