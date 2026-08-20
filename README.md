@@ -230,9 +230,9 @@ Nun wird ein neues Projekt erstellt.
 
 1. Klicken Sie nun auf das Explorer Symbol (oben links) 
 2. Mit Hilfe der rechten Maustaste auf dem Ordner Src kann ein neues C-File erstellt wreden.
-3. Mit Hilfe der rechten Maustaste auf dem Ordner Inc kann ein neues h-File erstellt wreden.
+3. Mit Hilfe der rechten Maustaste auf dem Ordner Inc kann ein neues h-File erstellt werden.
 4. Öffnen Sie die Datei <Projekt Name>.cproject.yml
-5. Ganz unten in der Datei, in der group Program/User/Src muss das neue File mit hilfe von - file: <file name> hinzu gefügt werden.
+5. Ganz unten in der Datei, in der group Program/User/Src muss das neue File mit Hilfe von - file: <file name> hinzu gefügt werden.
 
 # Installation und Verwendung des C-Petty-Printers
 Der Pretty-Printer basiert auf dem clang Pretty-Printer clang-format. In dieser VSCode Konfiguration wird der Language Server clangd eingesetzt. Ein Language Server unterstützt typische Editor Funktionen wie Code-Vervollständigung, das Finden von Definitionen und Echtzeit-Fehleranalysen. In clangd ist auch der Pretty-Printer clang-format integriert. Aus Performance-Gründen ist clang-format direkt in clangd integriert - clangd verwendet entsprechende Bibliotheken von clang-format.
