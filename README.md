@@ -347,10 +347,9 @@ auf. Erscheinen keine Versionsinformationen muss clang-tidy auf Ihrem System wie
 Führen Sie in der Shell folgenden Befehl aus:
 - brew install llvm
 #### Linux
-ÜBERABEITEN
 Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
-- sudo apt install clang-format
+- sudo apt install clang-tidy
 #### Windows
 ÜBERARBEITEN
 Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
