@@ -233,54 +233,62 @@ Nun wird ein neues Projekt erstellt.
 4. Öffnen Sie die Datei <Projekt Name>.cproject.yml
 5. Ganz unten in der Datei, in der group Program/User/Src muss das neue File mit hilfe von - file: <file name> hinzu gefügt werden.
 
-# Installation und Verwendung des C-Pretty-Printers
-Der Pretty-Printer basiert auf dem clang Pretty-Printer. Dieser wird über das Python Script bin/format_all.py gestartet. Das Skript formatiert alle *.c und *.h Dateien des aktuellen CMSIS Projekts.
+# Installation und Verwendung des C-Petty-Printers
+Der Pretty-Printer basiert auf dem clang Pretty-Printer clang-format. In dieser VSCode Konfiguration wird der Language Server clangd eingesetzt. Ein Language Server unterstützt typische Editor Funktionen wie Code-Vervollständigung, das Finden von Definitionen und Echtzeit-Fehleranalysen. In clangd ist auch der Pretty-Printer clang-format integriert. Aus Performance-Gründen ist clang-format direkt in clangd integriert - clangd verwendet entsprechende Bibliotheken von clang-format.
 
-## Installation von Python
+## Konfiguration des clang Pretty-Printers 
+Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei ggf. an Ihre Bedürfnisse an.
+
+## Aufruf des Pretty-Printers für eine Datei im Text-Editor
+Bearbeiten Sie eine C-Datei im Text-Editor, wird der Pretty-Printer für diese Datei über das Keybinding “Alt+Shift+F“ (bzw. “Opt+Shift+F“ auf dem Mac) ausgeführt.
+
+## Aufruf des Pretty-Printers für alle Dateien des CMSIS-Projekts
+ Das Python Script bin/format_all.py ruft den Pretty-Printer für alle *.c und *.h Dateien des aktuellen CMSIS-Projekts auf. Da in diesem Fall der eigenständige Pretty-Printer clang-format Eingesetz wird, muss sowohl dieser wie auch Python3 installiert werden.
+ 
+
+### Installation von Python
 Überprüfen Sie, ob eine python3 Version auf Ihrem System installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - python3 --version 
 
 auf. Erscheinen keine Versionsinformationen muss python3 auf Ihrem System wie folgt installiert werden.
-### MAC
+#### MAC
 Führen Sie in der bash Shell folgenden Befehl aus:
 - brew install python3
-### Linux
+#### Linux
 Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
 - sudo apt install python3
-### Windows
+#### Windows
 - Öffnen Sie ein Terminal im Admin Modus über einen Rechtsklick auf dem Windows Symbol in der Task-Leiste.
 - Durch Eingabe des Befehls python3 gelangen Sie in den Microsoft-Store zur Installation von python. Führen Sie das Installationsskript aus, indem Sie nach den get-Button den open-Button drücken.
 
-## Installation der clang Pretty-Printers 
+### Installation der clang Pretty-Printers 
 Überprüfen Sie, ob der clang Pretty-Printer installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - clang-format --version 
 
 auf. Erscheinen keine Versionsinformationen muss clang-format auf Ihrem System wie folgt installiert werden.
-### MAC
+#### MAC
 Führen Sie in der bash Shell folgenden Befehl aus:
 - brew install clang-format
-### Linux
+#### Linux
 Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
 - sudo apt install clang-format
-### Windows
+#### Windows
 Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
 
-## Konfiguration des clang Pretty-Printers 
-Die Datei “.clang-format“ im Wurzelverzeichnis des VSCode Projekts legt die Formatierung fest. Passen Sie diese bei Bedarf an Ihre Bedürfnisse an.
 
-## Ausführung des Pretty-Printers
+### Ausführung des Pretty-Printers
 Sie können die Pretty-Printer auf drei Arten ausführen.
 1. Im Terminal wird folgender Befehl ausgeführt:
-   - python3 <Pfad zum VScode Projekt\>/bin/format_all.py <Pfad zum aktuellen CMSIS Projekt\>
+   - python3 <Pfad zum VScode Projekt\>/bin/format_all.py <Pfad zum aktuellen CMSIS-Projekt\>
 2. Die VSCode Task “C-Pretty-Printer“ wird ausgeführt.
-   - Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms.
+   - Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
    - Wählen und starten Sie das Programm “Tasks: Run Task“
    - Wählen Sie die Ausführung der Task “C-Pretty-Printer“
 3. Der C-Pretty-Printer wird über ein Keybinding ausgeführt.
 	 - Einmalig wird die VSCode Task “C-Pretty-Printer“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
-	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
    
    ```
    [
@@ -290,11 +298,11 @@ Sie können die Pretty-Printer auf drei Arten ausführen.
 	    }
     ]
     ```
-   - Nun kann über “Shift+Alt+P“ der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
+   - Nun kann über “Alt+Shift+P“ (bzw. “Opt+Shift+P“ auf einem MAC System) der C-Pretty-Printer für das aktuelle CMSIS Projekt ausgeführt werden.
 
 # Installation und Verwendung des C-Linters von clang
 Der C-Coding-Style-Checker basiert auf clang-tidy, dem C-Linter von clang. \
-In dieser VSCode Konfiguration wird der Language Server clangd eingesetzt. Ein Language Server unterstützt typische Editor Funktionen wie Code-Vervollständigung, das Finden von Definitionen und Echtzeit-Fehleranalysen. clangd unterstützt auch die Warnung des C-Linters clang-tidy. Aus Performance-Gründen ist clang-tidy direkt in clangd integriert - clangd verwendet entsprechende Bibliotheken von clang-tidy.
+In dieser VSCode Konfiguration wird der Language Server clangd eingesetzt. clangd unterstützt auch die Warnung des C-Linters clang-tidy. Aus Performance-Gründen ist clang-tidy direkt in clangd integriert - clangd verwendet entsprechende Bibliotheken von clang-tidy.
 
 ## Konfiguration des Linters clang-tidy
 clang-tidy wird über die Datei .clang-tidy, die in obersten Verzeichnis von diesem Repo liegt, konfiguriert. Bei Bedarf können Sie .clang-tidy sinnvoll anpassen, zum Beispiel bei den Konventionen für Bezeichner. Wobei das Ausschalten von clang-tidy Checks nur in Ausnahmefällen sinnvoll ist. 
@@ -322,7 +330,7 @@ Führen Sie in der bash Shell folgende Befehle aus:
 ##### Windows
 ÜBERARBEITEN
 Hier ist clang-format schon im Rahmen der Installation von llvm installiert.
-### Installation der clang-tidy
+### Installation von clang-tidy
 Überprüfen Sie, ob clang-tidy schon installiert ist. Rufen Sie dazu in einer Shell den Befehl 
 - clang-tidy --version 
 
@@ -345,12 +353,12 @@ Sie können die externe clang-tidy Version auf drei Arten ausführen.
 1. Im Terminal wird folgender Befehl ausgeführt:
    - python3 <Pfad zum VScode Projekt\>/bin/lint_all.py <Pfad zum aktuellen CMSIS Projekt\>
 2. Die VSCode Task “C-Linter“ wird ausgeführt.
-   - Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms.
+   - Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms.
    - Wählen und starten Sie das Programm “Tasks: Run Task“
    - Wählen Sie die Ausführung der Task “C-Linter“
 3. Der C-Linter wird über ein Keybinding ausgeführt.
 	 - Einmalig wird die VSCode Task “C-Linter“ an eine entsprechende Tastenkombination gebunden. Die Keybindings sind benutzerspezifisch und stehen somit in der benutzerspezifischen Datei keybindings.json. Auf einen MAC System liegt diese Datei im Verzeichnis /Users/<DeinBenutzername>/Library/Application Support/Code/User/.
-	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Ctrl-Shift-P“ (bzw. “Cmd-Shift-P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
+	 - Keybindings werden wie folgt eingefügt. Starten Sie über “Win+Shift+P“ (bzw. “Cmd+Shift+P“ auf einem MAC System) die Ausführung eines Programms. Wählen Sie “Open Keyboard Shortcuts (JSON)“ aus. In die sich öffnende JSON Datei fügen Sie folgendes Keybinding ein:
    
    ```
    [
@@ -360,8 +368,7 @@ Sie können die externe clang-tidy Version auf drei Arten ausführen.
 	    }
     ]
     ```
-   - Nun kann über “Shift+Alt+L“ der C-Linter für das aktuelle CMSIS Projekt ausgeführt werden.
-
+   - Nun kann über “Alt+Shift+L“ (bzw. “Opt+Shift+L“ auf einem MAC System) der C-Linter für das aktuelle CMSIS Projekt ausgeführt werden.
 
 
 # Keil GUI
