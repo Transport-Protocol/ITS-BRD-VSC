@@ -15,7 +15,8 @@ Checks: >
   -misc-predictable-rand,
   -clang-analyzer-core.FixedAddressDereference,
   -clang-analyzer-security.ArrayBound,
-  -misc-header-include-cycle
+  -misc-header-include-cycle,
+  -misc-use-internal-linkage
 
 CheckOptions:
   - key: readability-identifier-naming.ClassCase
