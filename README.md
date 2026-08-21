@@ -335,7 +335,7 @@ Führen Sie in der bash Shell folgenden Befehl aus:
 - sudo apt update
 - sudo apt install python3-yaml
 ##### Windows
-Führen Sie in der bash Shell folgenden Befehl aus:
+Führen Sie in der Powershell folgenden Befehl aus:
 - pip install pyyaml
 
 ### Installation von clang-tidy
@@ -351,11 +351,10 @@ Führen Sie in der bash Shell folgende Befehle aus:
 - sudo apt update
 - sudo apt install clang-tidy
 #### Windows
-ÜBERARBEITEN
+Hier ist clang-tidy normalerweise im Rahmen der Installation von llvm installiert. Dies können Sie in der Powershell über den Aufruf clang-tidy --version überprüfen.
 
-
-
-
+- Falls clang-tidy nicht installiert ist, laden Sie die aktuelle llvm Version von der Seite https://github.com/llvm/llvm-project/releases.
+- Führen Sie das heruntergeladene Installation-Skript aus. Achten Sie darauf, dass die Option „LLVM zum PATH aller User hinzufügen“ ausgewählt wird.
 
 ### Ausführung des externen clang-tidy Version
 Sie können die externe clang-tidy Version auf drei Arten ausführen.
