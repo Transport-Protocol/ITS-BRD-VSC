@@ -335,7 +335,8 @@ Führen Sie in der bash Shell folgenden Befehl aus:
 - sudo apt update
 - sudo apt install python3-yaml
 ##### Windows
-ÜBERARBEITEN
+Führen Sie in der bash Shell folgenden Befehl aus:
+- pip install pyyaml
 
 ### Installation von clang-tidy
 Überprüfen Sie, ob clang-tidy schon installiert ist. Rufen Sie dazu in einer Shell den Befehl 
