@@ -12,7 +12,7 @@ from logger import logger
 from typing import Optional, List, TextIO
 
 def exit_on_error(s) -> None :
-    txt = f"❌ Error: {s}"
+    txt = f"Error: {s}"
     print(txt, file=sys.stderr, flush=True)
     logger.log(txt)
     logger.close()

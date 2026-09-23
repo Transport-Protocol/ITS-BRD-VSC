@@ -10,7 +10,7 @@ import subprocess
 from typing import Optional
 
 def exit_on_error(s) -> None :
-    print(f"❌ Error: {s}")
+    print(f"Error: {s}")
     sys.exit(1)
 
 def assert_is_directory(path: str) -> None:
